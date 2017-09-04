@@ -98,6 +98,11 @@ def do_login():
     else:
         return fEngine.load_and_render("invalid", reason=err_str)
 
+@route('/sql_test')
+def sql_test():
+    return fEngine.load_and_render("sql_test", debug_text="select *")
+
+
 @get('/about')
 def about():
     garble = ["leverage agile frameworks to provide a robust synopsis for high level overviews.", 
