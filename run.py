@@ -100,8 +100,7 @@ def do_login():
 
 @route('/sql_test')
 def sql_test():
-    cursor = conn.execute('''SELECT *
-        FROM USER''')
+    cursor = sql('''SELECT * FROM USER''')
     display_text = cursor.fetchall()
     return fEngine.load_and_render("sql_test", debug_text=display_text)
 
@@ -120,29 +119,44 @@ def about():
 # Database
 import sqlite3
 
+# setup logging
+import logging
+logname='query_log.txt'
+logging.basicConfig(filename=logname,
+                            filemode='a',
+                            format='%(asctime)s, %(message)s',
+                            datefmt='%Y-%m-%d %H:%M:%S',
+                            level=logging.DEBUG)
+
+def sql(query):
+    #log query
+    logging.info(query)
+    return conn.execute(query)
+
 def create_tables():
-    conn.execute('''CREATE TABLE USER
-         (id        INT PRIMARY KEY NOT NULL,
-         username   VARCHAR(20) NOT NULL,
-         password   VARCHAR(60) NOT NULL,
-         type       INT, # medical/marriage/funeral
-         privelidge INT NOT NULL # admin/staff/user
-         );''')
-    print('table creation.')
+    cursor = sql("SELECT name FROM sqlite_master WHERE type='table' AND name='USER';")
+    if cursor.rowcount == 0:
+        sql('''CREATE TABLE USER
+             (id        INT AUTO_INCREMENT PRIMARY KEY,
+             username   VARCHAR(20) NOT NULL,
+             password   VARCHAR(60) NOT NULL,
+             type       INT,
+             privelidge INT NOT NULL
+             );''')
 
 def insert_test_user():
-    conn.execute('''INSERT INTO USER (id, username,password,type,privelidge)
+    sql('''INSERT INTO USER (username,password,type,privelidge)
         VALUES
-        (2,'Bob','cat',0,0)
+        ('Bob','cat',0,0),
+        ('Jeff','dog',0,0)
         ''')
     conn.commit()
-    print('test user.')
 
 #Open the database file
 conn = sqlite3.connect('storage.db')
 
-# create_tables()
-# insert_test_user()
+create_tables()
+insert_test_user()
 
 #-----------------------------------------------------------------------------
 
