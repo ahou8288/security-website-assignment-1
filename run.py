@@ -100,7 +100,10 @@ def do_login():
 
 @route('/sql_test')
 def sql_test():
-    return fEngine.load_and_render("sql_test", debug_text="select *")
+    cursor = conn.execute('''SELECT *
+        FROM USER''')
+    display_text = cursor.fetchall()
+    return fEngine.load_and_render("sql_test", debug_text=display_text)
 
 
 @get('/about')
@@ -114,6 +117,38 @@ def about():
     return fEngine.load_and_render("about", garble=np.random.choice(garble))
 
 #-----------------------------------------------------------------------------
+# Database
+import sqlite3
+
+def create_tables():
+    conn.execute('''CREATE TABLE USER
+         (id        INT PRIMARY KEY NOT NULL,
+         username   VARCHAR(20) NOT NULL,
+         password   VARCHAR(60) NOT NULL,
+         type       INT, # medical/marriage/funeral
+         privelidge INT NOT NULL # admin/staff/user
+         );''')
+    print('table creation.')
+
+def insert_test_user():
+    conn.execute('''INSERT INTO USER (id, username,password,type,privelidge)
+        VALUES
+        (2,'Bob','cat',0,0)
+        ''')
+    conn.commit()
+    print('test user.')
+
+#Open the database file
+conn = sqlite3.connect('storage.db')
+
+# create_tables()
+# insert_test_user()
+
+#-----------------------------------------------------------------------------
 
 fEngine = FrameEngine()
-run(host='localhost', port=8080, debug=True)
+
+try:
+    run(host='localhost', port=8080, debug=True)
+finally:
+    conn.close()
