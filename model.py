@@ -2,7 +2,7 @@ import sqlite3
 
 # setup logging
 import logging
-logname='query_log.txt'
+logname='query_log.sql'
 logging.basicConfig(filename=logname,
                             filemode='a',
                             format='%(asctime)s, %(message)s',
@@ -11,20 +11,27 @@ logging.basicConfig(filename=logname,
 
 def sql(query,*args):
     #log query
-    logging.info(query+str(args))
+    if len(args)>0:
+        logging.info(query+'\t'+str(args))
+    else:
+        logging.info(query)
     return conn.execute(query,args)
 
 def create_tables():
     cursor = sql("SELECT name FROM sqlite_master WHERE type='table' AND name='USER';")
-    if cursor.rowcount == 0:
+    if len(cursor.fetchall())==0:
         sql('''CREATE TABLE USER
              (id        INT AUTO_INCREMENT PRIMARY KEY,
              username   VARCHAR(20) NOT NULL,
              password   VARCHAR(60) NOT NULL,
              salt       VARCHAR(60) NOT NULL,
              type       INT,
-             privelidge INT NOT NULL
-             );''')
+             privelidge INT NOT NULL);''')
+        commit()
+
+def get_users():
+    cursor = sql('''SELECT * FROM USER''')
+    return cursor.fetchall()
 
 def insert_test_user():
     sql('''INSERT INTO USER (username,password,type,privelidge)
@@ -32,10 +39,28 @@ def insert_test_user():
         ('Bob','cat',0,0),
         ('Jeff','dog',0,0)
         ''')
-    conn.commit()
+    commit()
+
+def create_user(username, password,password2, role):
+    cursor = sql('''SELECT * FROM USER WHERE username=?''',(username))
+    users = cursor.fetchall()
+
+    if len(users)==0:
+        privelidge=0
+        cursor=sql('''
+            INSERT INTO USER (username,password,type,privelidge,salt)
+            VALUES
+            (?,?,?,?,?)''',username,password,role,privelidge,'salt')
+        conn.commit()
+        return 'actually made the user'
+    else:
+        return 'too many users'
 
 def close():
-	conn.close()
+    conn.close()
+
+def commit():
+    conn.commit()
 
 #Open the database file
 conn = sqlite3.connect('storage.db')

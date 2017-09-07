@@ -2,6 +2,7 @@ from bottle import route, get, run, post, request, redirect, static_file
 from Crypto.Hash import MD5
 import re
 import numpy as np
+import model
 
 #-----------------------------------------------------------------------------
 # This class loads html files from the "template" directory and formats them using Python.
@@ -76,6 +77,7 @@ def check_login(username, password):
     return login_string, login
 
 #-----------------------------------------------------------------------------
+# GET REQUESTS
 # Redirect to login
 @route('/')
 @route('/home')
@@ -92,21 +94,17 @@ def login():
 def register():
     return fEngine.load_and_render("register")
 
-def create_user(username, password, role):
-    cursor = sql('''SELECT * FROM USER WHERE username=?''',(username))
-    users = cursor.fetchall()
+@get('/sql_test')
+def sql_test():
+    return fEngine.load_and_render("sql_test", debug_text=model.get_users())
 
-    if len(users)==0:
-        privelidge=0
-        cursor=sql('''
-            INSERT INTO USER (username,password,type,privelidge)
-            VALUES
-            (?,?,?,?)''',username,password,role,privelidge)
-        conn.commit()
-        return 'actually made the user'
-    else:
-        return 'too many users'
-
+@get('/about')
+def about():
+    garble = ["leverage agile frameworks to provide a robust synopsis for high level overviews.", 
+    "provide user generated content in real-time will have multiple touchpoints for offshoring."]
+    return fEngine.load_and_render("about", garble=np.random.choice(garble))
+#-----------------------------------------------------------------------------
+# POST REQUESTS
 # Deal with the registration
 @post('/register')
 def do_register():
@@ -115,11 +113,8 @@ def do_register():
     password2 = request.forms.get('password2')
     role = request.forms.get('role')
 
-    if password==password2:
-        print(create_user(username,password,role))
-        return fEngine.load_and_render("valid", flag="New user created")
-    else:
-        return fEngine.load_and_render("invalid", reason="not matching")
+    print(model.create_user(username,password, password2 ,role))
+    return fEngine.load_and_render("valid", flag="New user created")
 
 # Attempt the login
 @post('/login')
@@ -131,69 +126,13 @@ def do_login():
         return fEngine.load_and_render("valid", flag=err_str)
     else:
         return fEngine.load_and_render("invalid", reason=err_str)
-
-@route('/sql_test')
-def sql_test():
-    cursor = sql('''SELECT * FROM USER''')
-    display_text = cursor.fetchall()
-    return fEngine.load_and_render("sql_test", debug_text=display_text)
-
-@get('/about')
-def about():
-    garble = ["leverage agile frameworks to provide a robust synopsis for high level overviews.", 
-    "iterate approaches to corporate strategy and foster collaborative thinking to further the overall value proposition.",
-    "organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.",
-    "bring to the table win-win survival strategies to ensure proactive domination.",
-    "ensure the end of the day advancement, a new normal that has evolved from generation X and is on the runway heading towards a streamlined cloud solution.",
-    "provide user generated content in real-time will have multiple touchpoints for offshoring."]
-    return fEngine.load_and_render("about", garble=np.random.choice(garble))
-
-#-----------------------------------------------------------------------------
-# Database
-import sqlite3
-
-# setup logging
-import logging
-logname='query_log.txt'
-logging.basicConfig(filename=logname,
-                            filemode='a',
-                            format='%(asctime)s, %(message)s',
-                            datefmt='%Y-%m-%d %H:%M:%S',
-                            level=logging.DEBUG)
-
-def sql(query,*args):
-    #log query
-    logging.info(query+str(args))
-    return conn.execute(query,args)
-
-def create_tables():
-    cursor = sql("SELECT name FROM sqlite_master WHERE type='table' AND name='USER';")
-    if cursor.rowcount == 0:
-        sql('''CREATE TABLE USER
-             (id        INT AUTO_INCREMENT PRIMARY KEY,
-             username   VARCHAR(20) NOT NULL,
-             password   VARCHAR(60) NOT NULL,
-             salt       VARCHAR(60) NOT NULL,
-             type       INT,
-             privelidge INT NOT NULL
-             );''')
-
-def insert_test_user():
-    sql('''INSERT INTO USER (username,password,type,privelidge)
-        VALUES
-        ('Bob','cat',0,0),
-        ('Jeff','dog',0,0)
-        ''')
-    conn.commit()
-
-#Open the database file
-conn = sqlite3.connect('storage.db')
-
 #-----------------------------------------------------------------------------
 
 fEngine = FrameEngine()
+model.create_tables()
+print('tables created')
 
 try:
     run(host='localhost', port=8080, debug=True)
 finally:
-    conn.close()
+    model.close()
