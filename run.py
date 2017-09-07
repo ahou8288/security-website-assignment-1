@@ -74,7 +74,7 @@ def check_login(username, password):
     login_string = "Logged in!"
     login = True
     return login_string, login
-    
+
 #-----------------------------------------------------------------------------
 # Redirect to login
 @route('/')
@@ -93,7 +93,19 @@ def register():
     return fEngine.load_and_render("register")
 
 def create_user(username, password, role):
+    cursor = sql('''SELECT * FROM USER WHERE username=?''',(username))
+    users = cursor.fetchall()
 
+    if len(users)==0:
+        privelidge=0
+        cursor=sql('''
+            INSERT INTO USER (username,password,type,privelidge)
+            VALUES
+            (?,?,?,?)''',username,password,role,privelidge)
+        conn.commit()
+        return 'actually made the user'
+    else:
+        return 'too many users'
 
 # Deal with the registration
 @post('/register')
@@ -103,9 +115,11 @@ def do_register():
     password2 = request.forms.get('password2')
     role = request.forms.get('role')
 
-    print(username,password,password2,role)
-
-    return fEngine.load_and_render("valid", flag="{0}\t{1}\t{2}\t{3}".format(username,password,password2,role))
+    if password==password2:
+        print(create_user(username,password,role))
+        return fEngine.load_and_render("valid", flag="New user created")
+    else:
+        return fEngine.load_and_render("invalid", reason="not matching")
 
 # Attempt the login
 @post('/login')
@@ -123,7 +137,6 @@ def sql_test():
     cursor = sql('''SELECT * FROM USER''')
     display_text = cursor.fetchall()
     return fEngine.load_and_render("sql_test", debug_text=display_text)
-
 
 @get('/about')
 def about():
@@ -148,10 +161,10 @@ logging.basicConfig(filename=logname,
                             datefmt='%Y-%m-%d %H:%M:%S',
                             level=logging.DEBUG)
 
-def sql(query):
+def sql(query,*args):
     #log query
-    logging.info(query)
-    return conn.execute(query)
+    logging.info(query+str(args))
+    return conn.execute(query,args)
 
 def create_tables():
     cursor = sql("SELECT name FROM sqlite_master WHERE type='table' AND name='USER';")
@@ -175,9 +188,6 @@ def insert_test_user():
 
 #Open the database file
 conn = sqlite3.connect('storage.db')
-
-# create_tables()
-# insert_test_user()
 
 #-----------------------------------------------------------------------------
 
