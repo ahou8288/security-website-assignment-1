@@ -87,6 +87,26 @@ def index():
 def login():
     return fEngine.load_and_render("login")
 
+# Display the registration page
+@get('/register')
+def register():
+    return fEngine.load_and_render("register")
+
+def create_user(username, password, role):
+
+
+# Deal with the registration
+@post('/register')
+def do_register():
+    username = request.forms.get('username')
+    password = request.forms.get('password')
+    password2 = request.forms.get('password2')
+    role = request.forms.get('role')
+
+    print(username,password,password2,role)
+
+    return fEngine.load_and_render("valid", flag="{0}\t{1}\t{2}\t{3}".format(username,password,password2,role))
+
 # Attempt the login
 @post('/login')
 def do_login():
@@ -140,6 +160,7 @@ def create_tables():
              (id        INT AUTO_INCREMENT PRIMARY KEY,
              username   VARCHAR(20) NOT NULL,
              password   VARCHAR(60) NOT NULL,
+             salt       VARCHAR(60) NOT NULL,
              type       INT,
              privelidge INT NOT NULL
              );''')
@@ -155,8 +176,8 @@ def insert_test_user():
 #Open the database file
 conn = sqlite3.connect('storage.db')
 
-create_tables()
-insert_test_user()
+# create_tables()
+# insert_test_user()
 
 #-----------------------------------------------------------------------------
 
