@@ -183,3 +183,35 @@
 		INSERT INTO USER (username,password,type,privelidge,salt)
 		VALUES
 		(?,?,?,?,?)	('sssssssssss', 'sssssssssss', 'sssssssssss', 0, 'marriage')
+2017-09-10 21:01:36, SELECT 1 FROM USER WHERE username=?	('sssssssssss',)
+2017-09-10 21:01:46, SELECT 1 FROM USER WHERE username=?	('sdfsddfs',)
+2017-09-10 21:07:15, SELECT 1 FROM USER WHERE username=?	('sdsdsdsds',)
+2017-09-10 21:07:15, 
+		INSERT INTO USER (username,password,type,privelidge,salt)
+		VALUES
+		(?,?,?,?,?)	('sdsdsdsds', 'sdsdsdsds', 'sdsdsdsds', 0, 'marriage')
+2017-09-10 21:14:06, SELECT id, salt
+		FROM USER
+		WHERE username=?	('df',)
+2017-09-10 21:14:30, SELECT 1 FROM USER WHERE username=?	('andrew',)
+2017-09-10 21:14:59, SELECT 1 FROM USER WHERE username=?	('andrew',)
+2017-09-10 21:16:13, SELECT 1 FROM USER WHERE username=?	('andrew',)
+2017-09-10 21:16:28, SELECT 1 FROM USER WHERE username=?	('andrew',)
+2017-09-10 21:16:28, 
+		INSERT INTO USER (username,password,type,privelidge,salt)
+		VALUES
+		(?,?,?,?,?)	('andrew', 'dee0491ba64a69f530b334f6bd719350de2469a4da94afee58f994a4f81f4ed1', 'marriage', 0, "b'54b07cfee89dee0cbcda737f2b3dc5b52ba1f43b296f4d37efd7595077ef'")
+2017-09-10 21:16:44, SELECT id, salt
+		FROM USER
+		WHERE username=?	('andrew ',)
+2017-09-10 21:16:51, SELECT id, salt
+		FROM USER
+		WHERE username=?	('andrew',)
+2017-09-10 21:17:35, SELECT * FROM USER
+2017-09-10 21:18:11, SELECT 1 FROM USER WHERE username=?	('andy',)
+2017-09-10 21:18:11, 
+		INSERT INTO USER (username,password,type,privelidge,salt)
+		VALUES
+		(?,?,?,?,?)	('andy', '2f2bb08b7b968b21d47a1adcdec8ccc739a532b5116d0adb8c1de3d1c5ef45fc', 'marriage', 0, "b'28ce1163bbc9161c51083bc23d2d0cee802e63a5a5818ffed44cb238343d'")
+2017-09-10 21:18:13, SELECT * FROM USER
+2017-09-10 21:19:04, SELECT 1 FROM USER WHERE username=?	('s',)

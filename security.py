@@ -1,11 +1,12 @@
 import model
+from binascii import hexlify
 from bottle import request
 from Crypto.Hash import SHA256
 from Crypto.Random import get_random_bytes
 import os
 
 def secure_password(pwd):
-	if len(pwd) > 7:
+	if len(pwd) > 1:
 		return True
 	else:
 		return False
@@ -33,10 +34,13 @@ class Session:
 all_sessions=[]
 
 
-def handle_login(username,password,session_id,ip):
+def password_hash(password,salt):
 	h=SHA256.new()
+	hashed=h.new(salt.encode('utf-8')+password.encode('utf-8')).hexdigest()
+	return hashed
 
-	# use username to get salt
+def handle_login(username,password,session_id,ip):
+	# use username to get salt and id
 	user_data=model.get_salt(username)
 
 	if user_data is None:
@@ -45,12 +49,11 @@ def handle_login(username,password,session_id,ip):
 		salt,user_id=user_data
 
 	# use salt and password to get hashed password
-	hashed=h.new(salt.encode('utf-8')+password.encode('utf-8')).hexdigest()
+	hashed = password_hash(password, salt)
 
 	# check database to see if user has input a valid password
-	print(hashed)
-
 	valid = model.check_password(user_id,hashed)
+
 	if valid:
 		all_sessions[session_id]=Session(ip,user_id)
 		return True, 'Login correct'
@@ -59,6 +62,7 @@ def handle_login(username,password,session_id,ip):
 
 
 def handle_register(username,password,password2,role):
+	salt_length=30 #in bytes
 
 	if password != password2:
 		return False, 'Passwords do not match'
@@ -70,11 +74,15 @@ def handle_register(username,password,password2,role):
 	if model.username_exists(username):
 		return False, 'Username is already taken'
 
-	new_salt=get_random_bytes(16)
-	print(new_salt)
+	if len(username)>20:
+		return False, 'Username is too long'
 
-	request_ip=request.environ.get('REMOTE_ADDR')	
-	print(request_ip)
+	if len(password)>20:
+		return False, 'Password is too long. Maximum password length is 60 characters.'
 
-	model.create_user(username,password, password2 ,role)
+	new_salt=str(hexlify(get_random_bytes(salt_length)))
+
+	new_hashed_password = password_hash(password,new_salt)
+
+	model.create_user(username, new_hashed_password ,role, new_salt)
 	return True, 'user created'

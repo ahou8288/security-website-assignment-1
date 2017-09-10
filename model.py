@@ -51,7 +51,7 @@ def check_password(user_id,hashed):
 		WHERE id=? and password = ?''',user_id,hashed)
 	return cursor.fetchone()
 
-def create_user(username, password,role,salt):
+def create_user(username, password, role, salt):
 	privelidge=0
 	cursor=sql('''
 		INSERT INTO USER (username,password,type,privelidge,salt)
