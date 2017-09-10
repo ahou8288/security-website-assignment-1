@@ -1,4 +1,4 @@
-from bottle import route, get, run, post, request, redirect, static_file
+from bottle import route, get, run, post, request, redirect, static_file, response
 from Crypto.Hash import MD5
 import re
 import numpy as np
@@ -111,15 +111,16 @@ def do_login():
     if session_id is None:
         session_id='blah'
         response.set_cookie('session',session_id,path='/')
+    request_ip=request.environ.get('REMOTE_ADDR')
 
     username = request.forms.get('username')
     password = request.forms.get('password')
 
-    login=security.handle_login(username,password,session_id)
+    login, reason=security.handle_login(username,password,session_id,request_ip)
     if login: 
         return fEngine.load_and_render("valid")
     else:
-        return fEngine.load_and_render("invalid")
+        return fEngine.load_and_render("invalid",reason=reason)
 #-----------------------------------------------------------------------------
 
 fEngine = FrameEngine()

@@ -1,8 +1,9 @@
 import model
 from Crypto.Hash import SHA256
 
+
 def secure_password(pwd):
-	if len(pwd)>7:
+	if len(pwd) > 7:
 		return True
 	else:
 		return False
@@ -29,18 +30,24 @@ all_sessions=[]
 
 def handle_login(username,password,session_id,ip):
 	h=SHA256.new()
-	if session_id not in all_sessions:
-		#use username to get salt
-		user_id,salt=model.get_salt(username)
-		if salt is None:
-			return 'Invalid username/password.'
-		#use salt and password to get hashed password
-		h.update(b(salt+password))
-		#check database to see if user has input a valid password
-		valid = model.check_password(user_id,h.hex_digest())
 
-		if valid:
-			all_sessions[session_id]=Session(ip,user_id)
-			return 'Login correct'
-		else:
-			return 'Invalid username/password.'
+	# use username to get salt
+	user_data=model.get_salt(username)
+
+	if user_data is None:
+		return False, 'Invalid username/password.'
+	else:
+		salt,user_id=user_data
+
+	# use salt and password to get hashed password
+	hashed=h.new(salt.encode('utf-8')+password.encode('utf-8')).hexdigest()
+
+	# check database to see if user has input a valid password
+	print(hashed)
+
+	valid = model.check_password(user_id,hashed)
+	if valid:
+		all_sessions[session_id]=Session(ip,user_id)
+		return True, 'Login correct'
+	else:
+		return False, 'Invalid username/password.'
