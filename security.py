@@ -31,12 +31,15 @@ class Session:
 		return [self.ip,self.logged_on,self.id_key]
 
 
-all_sessions=[]
+all_sessions={}
 
 
 def password_hash(password,salt):
 	h=SHA256.new()
-	hashed=h.new(salt.encode('utf-8')+password.encode('utf-8')).hexdigest()
+	if type(salt) == str:
+		salt=salt.encode('utf-8')
+	encoded_password=password.encode('utf-8')
+	hashed=h.new(salt+encoded_password).hexdigest()
 	return hashed
 
 def handle_login(username,password,session_id,ip):
@@ -46,13 +49,13 @@ def handle_login(username,password,session_id,ip):
 	if user_data is None:
 		return False, 'Invalid username/password.'
 	else:
-		salt,user_id=user_data
+		user_id,salt=user_data
 
 	# use salt and password to get hashed password
 	hashed = password_hash(password, salt)
 
 	# check database to see if user has input a valid password
-	valid = model.check_password(user_id,hashed)
+	valid = model.check_password(username,hashed)
 
 	if valid:
 		all_sessions[session_id]=Session(ip,user_id)
@@ -60,6 +63,10 @@ def handle_login(username,password,session_id,ip):
 	else:
 		return False, 'Invalid username/password.'
 
+
+def random_salt(salt_length):
+	new_salt=hexlify(get_random_bytes(salt_length)).decode('utf-8')
+	return new_salt
 
 def handle_register(username,password,password2,role):
 	salt_length=30 #in bytes
@@ -80,7 +87,7 @@ def handle_register(username,password,password2,role):
 	if len(password)>20:
 		return False, 'Password is too long. Maximum password length is 60 characters.'
 
-	new_salt=str(hexlify(get_random_bytes(salt_length)))
+	new_salt=random_salt(salt_length)
 
 	new_hashed_password = password_hash(password,new_salt)
 

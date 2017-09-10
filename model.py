@@ -45,10 +45,11 @@ def get_salt(username):
 		WHERE username=?''',(username))
 	return cursor.fetchone()
 
-def check_password(user_id,hashed):
+def check_password(username,hashed):
+	print("hashed {}".format(hashed))
 	cursor=sql('''SELECT 1
 		FROM USER
-		WHERE id=? and password = ?''',user_id,hashed)
+		WHERE username=? and password = ?''',username,hashed)
 	return cursor.fetchone()
 
 def create_user(username, password, role, salt):

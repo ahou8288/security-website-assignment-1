@@ -109,7 +109,7 @@ def do_login():
 	#create a session for the user
 	session_id = request.get_cookie('session')
 	if session_id is None:
-		session_id='blah'
+		session_id=security.random_salt(30)
 		response.set_cookie('session',session_id,path='/')
 	request_ip=request.environ.get('REMOTE_ADDR')
 
