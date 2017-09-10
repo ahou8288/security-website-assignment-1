@@ -172,3 +172,14 @@
 2017-09-10 20:07:12, SELECT id, salt
 		FROM USER
 		WHERE username=?	('sd',)
+2017-09-10 20:37:43, SELECT name FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-10 20:37:43, SELECT name FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-10 20:38:05, SELECT name FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-10 20:38:24, SELECT * FROM USER
+2017-09-10 20:56:46, SELECT 1 FROM USER WHERE username=?	('sssssssssss',)
+2017-09-10 20:57:10, SELECT 1 FROM USER WHERE username=?	('sssssssssss',)
+2017-09-10 20:57:44, SELECT 1 FROM USER WHERE username=?	('sssssssssss',)
+2017-09-10 20:57:44, 
+		INSERT INTO USER (username,password,type,privelidge,salt)
+		VALUES
+		(?,?,?,?,?)	('sssssssssss', 'sssssssssss', 'sssssssssss', 0, 'marriage')

@@ -35,12 +35,9 @@ def get_users():
 	cursor = sql('''SELECT * FROM USER''')
 	return cursor.fetchall()
 
-def insert_test_user():
-	sql('''INSERT INTO USER (username,password,type,privelidge)
-		VALUES
-		('Bob','cat',0,0),
-		('Jeff','dog',0,0)''')
-	commit()
+def username_exists(username):
+	cursor=sql('''SELECT 1 FROM USER WHERE username=?''',(username))
+	return cursor.fetchone()
 
 def get_salt(username):
 	cursor=sql('''SELECT id, salt
@@ -54,19 +51,14 @@ def check_password(user_id,hashed):
 		WHERE id=? and password = ?''',user_id,hashed)
 	return cursor.fetchone()
 
-def create_user(username, password,password2, role):
-	cursor = sql('''SELECT * FROM USER WHERE username=?''',(username))
+def create_user(username, password,role,salt):
+	privelidge=0
+	cursor=sql('''
+		INSERT INTO USER (username,password,type,privelidge,salt)
+		VALUES
+		(?,?,?,?,?)''',username,password,role,privelidge,salt)
+	conn.commit()
 
-	if len(cursor.fetchall())==0:
-		privelidge=0
-		cursor=sql('''
-			INSERT INTO USER (username,password,type,privelidge,salt)
-			VALUES
-			(?,?,?,?,?)''',username,password,role,privelidge,'salt')
-		conn.commit()
-		return 'actually made the user'
-	else:
-		return 'username already exists'
 
 def close():
 	conn.close()
