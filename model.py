@@ -15,6 +15,7 @@ def sql(query,*args):
         logging.info(query+'\t'+str(args))
     else:
         logging.info(query)
+
     return conn.execute(query,args)
 
 def create_tables():
@@ -37,15 +38,13 @@ def insert_test_user():
     sql('''INSERT INTO USER (username,password,type,privelidge)
         VALUES
         ('Bob','cat',0,0),
-        ('Jeff','dog',0,0)
-        ''')
+        ('Jeff','dog',0,0)''')
     commit()
 
 def create_user(username, password,password2, role):
     cursor = sql('''SELECT * FROM USER WHERE username=?''',(username))
-    users = cursor.fetchall()
 
-    if len(users)==0:
+    if len(cursor.fetchall())==0:
         privelidge=0
         cursor=sql('''
             INSERT INTO USER (username,password,type,privelidge,salt)
@@ -54,7 +53,7 @@ def create_user(username, password,password2, role):
         conn.commit()
         return 'actually made the user'
     else:
-        return 'too many users'
+        return 'username already exists'
 
 def close():
     conn.close()

@@ -3,6 +3,7 @@ from Crypto.Hash import MD5
 import re
 import numpy as np
 import model
+import security
 
 #-----------------------------------------------------------------------------
 # This class loads html files from the "template" directory and formats them using Python.
@@ -60,25 +61,7 @@ def serve_js(js):
     return static_file(js, root='js/')
 
 #-----------------------------------------------------------------------------
-
-# Check the login credentials
-def check_login(username, password):
-    login = False
-    if username != "admin": # Wrong Username
-        err_str = "Incorrect Username"
-        return err_str, login
-    
-    if password != "password":
-        err_str = "Incorrect Password"
-        return err_str, login
-
-    login_string = "Logged in!"
-    login = True
-    return login_string, login
-
-#-----------------------------------------------------------------------------
 # GET REQUESTS
-# Redirect to login
 @route('/')
 @route('/home')
 def index():
@@ -113,26 +96,37 @@ def do_register():
     password2 = request.forms.get('password2')
     role = request.forms.get('role')
 
-    print(model.create_user(username,password, password2 ,role))
+    if security.secure_password(password):
+        print(model.create_user(username,password, password2 ,role))
+    else:
+        print('insecure password')
+
     return fEngine.load_and_render("valid", flag="New user created")
 
 # Attempt the login
 @post('/login')
 def do_login():
+    #create a session for the user
+    session_id = request.get_cookie('session')
+    if session_id is None:
+        session_id='blah'
+        response.set_cookie('session',session_id,path='/')
+
     username = request.forms.get('username')
     password = request.forms.get('password')
-    err_str, login = check_login(username, password)
+
+    login=security.handle_login(username,password,session_id)
     if login: 
-        return fEngine.load_and_render("valid", flag=err_str)
+        return fEngine.load_and_render("valid")
     else:
-        return fEngine.load_and_render("invalid", reason=err_str)
+        return fEngine.load_and_render("invalid")
 #-----------------------------------------------------------------------------
 
 fEngine = FrameEngine()
 model.create_tables()
-print('tables created')
+print('all tables created')
 
 try:
-    run(host='localhost', port=8080, debug=True)
+    run(reloader=True, host='localhost', port=8080, debug=True)
 finally:
     model.close()
