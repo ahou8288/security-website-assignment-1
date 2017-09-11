@@ -1,26 +1,55 @@
+import math
 import model
 from binascii import hexlify
 from bottle import request
 from Crypto.Hash import SHA256
 from Crypto.Random import get_random_bytes
 import os
+import re
 
 def is_logged_on():
-	print('login requested')
-
+	# Check cookie and ip address of user
 	request_cookie = request.get_cookie('session')
 	request_ip=request.environ.get('REMOTE_ADDR')
 	if request_cookie in all_sessions:
-		print('cookie exists')
-		return all_sessions[request_cookie].logged_on
+		return all_sessions[request_cookie].logged_on and all_sessions[request_cookie].ip==request_ip
 	else:
 		return False
 
-def secure_password(pwd):
-	if len(pwd) > 1:
-		return True
-	else:
+with open("common2.txt") as f:
+	banned_passwords = f.readlines()
+banned_passwords = set([x.strip() for x in banned_passwords])
+
+def charset_size(pwd):
+	# find out how many different characters could have been used in this password
+	# eg. if lowercase letters are used then they are selecting from 26 characters.
+	chars = [[re.compile(r'[a-z]'),26],
+		[re.compile(r'[A-Z]'),26],
+		[re.compile(r'[0-9]'),10],
+		[re.compile(r'[^a-zA-Z0-9]'),15]]
+	total_charset=0
+	for j in chars:
+		for character in pwd:
+			if j[0].search(character):
+				total_charset+=j[1]
+				break
+	return total_charset
+
+def entropy(pwd):
+	return math.log(charset_size(pwd))*len(pwd)
+
+def secure_password(pwd,username):
+	if len(pwd) < 8:
 		return False
+	if pwd in banned_passwords:
+		return False
+	if username in pwd:
+		return False
+	if len(set(pwd))<5:
+		return False
+	if entropy(pwd)<40:
+		return False
+	return True
 
 
 class Session:
@@ -77,7 +106,7 @@ def handle_register(username,password,password2,role):
 		return False, 'Passwords do not match'
 
 	# check password choice
-	if not secure_password(password):
+	if not secure_password(password,username):
 		return False, 'Password not secure'
 
 	if model.username_exists(username):
@@ -86,8 +115,6 @@ def handle_register(username,password,password2,role):
 	if len(username)>20:
 		return False, 'Username is too long'
 
-	if len(password)>20:
-		return False, 'Password is too long. Maximum password length is 60 characters.'
 
 	new_salt=random_salt(salt_length)
 
@@ -95,3 +122,4 @@ def handle_register(username,password,password2,role):
 
 	model.create_user(username, new_hashed_password ,role, new_salt)
 	return True, 'user created'
+

@@ -1,7 +1,6 @@
 from bottle import route, get, run, post, request, redirect, static_file, response
 from Crypto.Hash import MD5
 import re
-import numpy as np
 import model
 import security
 
