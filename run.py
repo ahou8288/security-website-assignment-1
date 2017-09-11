@@ -83,9 +83,14 @@ def sql_test():
 
 @get('/about')
 def about():
-	garble = ["leverage agile frameworks to provide a robust synopsis for high level overviews.", 
-	"provide user generated content in real-time will have multiple touchpoints for offshoring."]
-	return fEngine.load_and_render("about", garble=np.random.choice(garble))
+	if security.is_logged_on():
+		garble = ["leverage agile frameworks to provide a robust synopsis for high level overviews.", 
+		"provide user generated content in real-time will have multiple touchpoints for offshoring."]
+		return fEngine.load_and_render("about", garble=np.random.choice(garble))
+	else:
+		return fEngine.load_and_render("login")
+
+
 #-----------------------------------------------------------------------------
 # POST REQUESTS
 # Deal with the registration

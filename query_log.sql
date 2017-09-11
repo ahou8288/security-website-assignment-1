@@ -321,3 +321,10 @@
 2017-09-10 21:50:18, SELECT 1
 		FROM USER
 		WHERE username=? and password = ?	('ee', '1aad3c0998c47dd1f3ba7068560ba8113e97642994dd8b8747cd399e262877c3')
+2017-09-11 11:44:22, SELECT * FROM USER
+2017-09-11 11:47:54, SELECT id, salt
+		FROM USER
+		WHERE username=?	('ee',)
+2017-09-11 11:47:54, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('ee', '1aad3c0998c47dd1f3ba7068560ba8113e97642994dd8b8747cd399e262877c3')

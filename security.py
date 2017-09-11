@@ -5,6 +5,17 @@ from Crypto.Hash import SHA256
 from Crypto.Random import get_random_bytes
 import os
 
+def is_logged_on():
+	print('login requested')
+
+	request_cookie = request.get_cookie('session')
+	request_ip=request.environ.get('REMOTE_ADDR')
+	if request_cookie in all_sessions:
+		print('cookie exists')
+		return all_sessions[request_cookie].logged_on
+	else:
+		return False
+
 def secure_password(pwd):
 	if len(pwd) > 1:
 		return True
@@ -16,15 +27,6 @@ class Session:
 	def __init__(self,ip,id_key=None,logged_on=True):
 		self.ip=ip
 		self.logged_on=logged_on
-		self.id_key=id_key
-
-	def log_on():
-		self.logged_on=True
-
-	def log_out():
-		self.logged_on=False
-
-	def set_id(id_key):
 		self.id_key=id_key
 
 	def get_data():
