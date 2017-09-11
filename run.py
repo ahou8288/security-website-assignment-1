@@ -6,11 +6,11 @@ import model
 
 #-----------------------------------------------------------------------------
 # This class loads html files from the "template" directory and formats them using Python.
-# If you are unsure how this is working, just 
+# If you are unsure how this is working, just
 class FrameEngine:
-    def __init__(this, 
-        template_path="templates/", 
-        template_extension=".html", 
+    def __init__(this,
+        template_path="templates/",
+        template_extension=".html",
         **kwargs):
         this.template_path = template_path
         this.template_extension = template_extension
@@ -67,7 +67,7 @@ def check_login(username, password):
     if username != "admin": # Wrong Username
         err_str = "Incorrect Username"
         return err_str, login
-    
+
     if password != "password":
         err_str = "Incorrect Password"
         return err_str, login
@@ -75,6 +75,15 @@ def check_login(username, password):
     login_string = "Logged in!"
     login = True
     return login_string, login
+
+# check field is not empty:
+def no_empty_field(input):
+	empty = True
+	if input != "":
+		empty = False
+	return empty
+
+# make sure fields aren't empty
 
 #-----------------------------------------------------------------------------
 # GET REQUESTS
@@ -100,9 +109,24 @@ def sql_test():
 
 @get('/about')
 def about():
-    garble = ["leverage agile frameworks to provide a robust synopsis for high level overviews.", 
+    garble = ["leverage agile frameworks to provide a robust synopsis for high level overviews.",
     "provide user generated content in real-time will have multiple touchpoints for offshoring."]
     return fEngine.load_and_render("about", garble=np.random.choice(garble))
+
+# display birth/death page
+@get('/medicalPrac')
+def birthAndDeath():
+    return fEngine.load_and_render("medicalPrac")
+
+# Display marriage page
+@get('/marriageOfficiator')
+def marriage():
+    return fEngine.load_and_render("marriageOfficiator")
+
+# Display funeral page
+@get('/funeralDir')
+def funeral():
+    return fEngine.load_and_render("funeralDir")
 #-----------------------------------------------------------------------------
 # POST REQUESTS
 # Deal with the registration
@@ -122,10 +146,49 @@ def do_login():
     username = request.forms.get('username')
     password = request.forms.get('password')
     err_str, login = check_login(username, password)
-    if login: 
+    if login:
         return fEngine.load_and_render("valid", flag=err_str)
     else:
         return fEngine.load_and_render("invalid", reason=err_str)
+
+# store wedding details
+@post('/marriageOfficiator')
+def wedding_details():
+    weddingTime = request.forms.get('marriageTime')
+    weddingPlace = request.forms.get('weddingPlace')
+	weddingGroom = request.forms.get('weddingGroom')
+	weddingBride = request.forms.get('weddingBride')
+
+
+# store divorce details
+@post('/marriageOfficiator')
+def divorce_details():
+    divorceTime = request.forms.get('divorceTime')
+    divorcePlace = request.forms.get('divorcePlace')
+	divorceHusband = request.forms.get('divorceHusband')
+	divorceWife = request.forms.get('divorceWife')
+
+# store birth details
+@post('/medicalPrac')
+def birth_details():
+    birthTime = request.forms.get('birthTime')
+    birthPlace = request.forms.get('birthPlace')
+	birthFather = request.forms.get('birthFather')
+	birthMother = request.forms.get('birthMother')
+
+# store death details
+@post('/medicalPrac')
+def death_details():
+    deathTime = request.forms.get('deathTime')
+    deathCause = request.forms.get('deathCause')
+	deathAutopsy = request.forms.get('deathAustopsy')
+
+# store funeral details
+@post('/funeralDir')
+def funeral_details():
+    familyMembers = request.forms.get('familyMembers')
+	nextOfKin = request.forms.get('nextOfKin')
+
 #-----------------------------------------------------------------------------
 
 fEngine = FrameEngine()

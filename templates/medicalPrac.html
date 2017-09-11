@@ -1,0 +1,56 @@
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Birth')" id="defaultOpen">Birth</button>
+  <button class="tablinks" onclick="openTab(event, 'Death')">Death</button>
+</div>
+
+<div id="Birth" class="tabcontent">
+  <h3>Birth</h3>
+  Enter time, place and parents for the birth:
+  </p>
+  <p>
+  <form action="/birthDetails" method="post">
+     Time: <input name="birthTime" type="date" />
+  </br>
+  </br>
+  	Place: <input name="birthPlace" type="text" />
+  </br>
+  </br>
+  	Father: <input name="birthFather" type="text" />
+  <!-- </br> -->
+  	Mother: <input name="birthMother" type="text" />
+  </br>
+  </br>
+  	<input value="Confirm Entry" type="submit" />
+  </br>
+</div>
+
+
+<div id="Death" class="tabcontent">
+  <h3>Death</h3>
+  Enter time, cause and use of autopsy for the death:
+  </p>
+  <p>
+  <form action="/deathDetails" method="post">
+   Time: <input name="deathTime" type="date" />
+  </br>
+  </br>
+  	Cause: <input name="deathCause" type="text" />
+  </br>
+  </br>
+  	Autopsy: <input name="autopsy" type="boolean" />
+  </br>
+  </br>
+  	<input value="Confirm Entry" type="submit" />
+  </br>
+</div>
+
+
+
+</form>
+</p>
+</center>
+
+<script>
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
