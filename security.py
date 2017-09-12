@@ -7,6 +7,13 @@ from Crypto.Random import get_random_bytes
 import os
 import re
 
+
+def brute_force(username,session_id,ip):
+	model.save_login_request(username,session_id,ip)
+	# if a certain username has been queried more than 10 times in the last minute lock it out
+	# if a certain ip or a certain session has made more than 10 login attempts lock it out
+	return False
+
 def is_logged_on():
 	# Check cookie and ip address of user
 	request_cookie = request.get_cookie('session')
@@ -74,6 +81,9 @@ def password_hash(password,salt):
 	return hashed
 
 def handle_login(username,password,session_id,ip):
+	if (brute_force(username,session_id,ip)):
+		return False, 'Too many login requests'
+
 	# use username to get salt and id
 	user_data=model.get_salt(username)
 

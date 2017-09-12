@@ -61,11 +61,6 @@ def serve_js(js):
 
 #-----------------------------------------------------------------------------
 # GET REQUESTS
-@route('/')
-@route('/home')
-def index():
-	return fEngine.load_and_render("index")
-
 # Display the login page
 @get('/login')
 def login():
@@ -76,19 +71,27 @@ def login():
 def register():
 	return fEngine.load_and_render("register")
 
+@route('/')
+@route('/home')
+def index():
+	if security.is_logged_on():
+		return fEngine.load_and_render("index")
+	else:
+		return fEngine.load_and_render("login")
+
 @get('/sql_test')
 def sql_test():
-	return fEngine.load_and_render("sql_test", debug_text=model.get_users())
+	if security.is_logged_on():
+		return fEngine.load_and_render("sql_test", debug_text=model.get_users())
+	else:
+		return fEngine.load_and_render("login")
 
 @get('/about')
 def about():
 	if security.is_logged_on():
-		garble = ["leverage agile frameworks to provide a robust synopsis for high level overviews.", 
-		"provide user generated content in real-time will have multiple touchpoints for offshoring."]
-		return fEngine.load_and_render("about", garble=np.random.choice(garble))
+		return fEngine.load_and_render("about", garble="blah")
 	else:
 		return fEngine.load_and_render("login")
-
 
 #-----------------------------------------------------------------------------
 # POST REQUESTS

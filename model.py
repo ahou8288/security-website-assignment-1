@@ -19,8 +19,8 @@ def sql(query,*args):
 	return conn.execute(query,args)
 
 def create_tables():
-	cursor = sql("SELECT name FROM sqlite_master WHERE type='table' AND name='USER';")
-	if len(cursor.fetchall())==0:
+	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';")
+	if cursor.fetchone() is None:
 		sql('''CREATE TABLE USER
 			 (id        INT AUTO_INCREMENT PRIMARY KEY,
 			 username   VARCHAR(20) NOT NULL,
@@ -28,8 +28,30 @@ def create_tables():
 			 salt       VARCHAR(60) NOT NULL,
 			 type       INT,
 			 privelidge INT NOT NULL);''')
-		
 		commit()
+
+	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';")
+	if cursor.fetchone() is None:
+		sql('''CREATE TABLE LOGIN_REQUESTS
+			 (id        	INT AUTO_INCREMENT PRIMARY KEY,
+			 username   	VARCHAR(20) NOT NULL,
+			 session_id 	VARCHAR(60) NOT NULL,
+			 ip   			VARCHAR(15) NOT NULL,
+			 request_time	TIMESTAMP default CURRENT_TIMESTAMP);''')
+		commit()
+
+def save_login_request(username,session_id,ip):
+	cursor=sql('''
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?,?)''',username,session_id,ip)
+	conn.commit()
+
+def count_login_requests(username,session_id,ip):
+	output=[sql('''SELECT count(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time-CURRENT_TIMESTAMP<10''',(username)).fetchone()]
+	output.append(sql('''SELECT count(*) FROM LOGIN_REQUESTS WHERE session_id=? AND request_time-CURRENT_TIMESTAMP<10''',(session_id)).fetchone())
+	output.append(sql('''SELECT count(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time-CURRENT_TIMESTAMP<10''',(ip)).fetchone())
+	return output
 
 def get_users():
 	cursor = sql('''SELECT * FROM USER''')
