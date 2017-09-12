@@ -1,7 +1,7 @@
 import math
 import model
 from binascii import hexlify
-from bottle import request
+from bottle import request, redirect
 from Crypto.Hash import SHA256
 from Crypto.Random import get_random_bytes
 import os
@@ -14,14 +14,16 @@ def brute_force(username,session_id,ip):
 	# if a certain ip or a certain session has made more than 10 login attempts lock it out
 	return False
 
-def is_logged_on():
+def is_logged_on(redir=True):
 	# Check cookie and ip address of user
 	request_cookie = request.get_cookie('session')
 	request_ip=request.environ.get('REMOTE_ADDR')
 	if request_cookie in all_sessions:
-		return all_sessions[request_cookie].logged_on and all_sessions[request_cookie].ip==request_ip
-	else:
-		return False
+		if all_sessions[request_cookie].logged_on and all_sessions[request_cookie].ip==request_ip:
+			return True
+	if redir:
+		redirect('/login')
+	return False
 
 with open("common2.txt") as f:
 	banned_passwords = f.readlines()
@@ -47,16 +49,17 @@ def entropy(pwd):
 
 def secure_password(pwd,username):
 	if len(pwd) < 8:
-		return False
+		return False, 'This password is too short.'
 	if pwd in banned_passwords:
-		return False
-	if username in pwd:
-		return False
+		return False, 'This password is banned.'
+	if username in pwd or pwd in username:
+		return False, 'Your username cannot relate to your password.'
 	if len(set(pwd))<5:
-		return False
+		return False, 'This password does not have enough different characters.'
 	if entropy(pwd)<40:
-		return False
-	return True
+		return False, '''This password is not complicated enough.
+		Increase the length or use uppercase, lowercase, digits and special characters in your password.'''
+	return True, ''
 
 
 class Session:
@@ -81,14 +84,17 @@ def password_hash(password,salt):
 	return hashed
 
 def handle_login(username,password,session_id,ip):
+	if username is None or password is None:
+		return False, 'Please input a username and a password.'
+
 	if (brute_force(username,session_id,ip)):
-		return False, 'Too many login requests'
+		return False, 'Too many login requests have been made.'
 
 	# use username to get salt and id
 	user_data=model.get_salt(username)
 
 	if user_data is None:
-		return False, 'Invalid username/password.'
+		return False, 'Invalid username.'
 	else:
 		user_id,salt=user_data
 
@@ -116,15 +122,15 @@ def handle_register(username,password,password2,role):
 		return False, 'Passwords do not match'
 
 	# check password choice
-	if not secure_password(password,username):
-		return False, 'Password not secure'
+	valid_pwd, reason = secure_password(password,username)
+	if not valid_pwd:
+		return False, 'Invalid password: '+reason
 
 	if model.username_exists(username):
 		return False, 'Username is already taken'
 
 	if len(username)>20:
 		return False, 'Username is too long'
-
 
 	new_salt=random_salt(salt_length)
 

@@ -44,7 +44,7 @@ def save_login_request(username,session_id,ip):
 	cursor=sql('''
 		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
 		VALUES
-		(?,?,?,?)''',username,session_id,ip)
+		(?,?,?)''',username,session_id,ip)
 	conn.commit()
 
 def count_login_requests(username,session_id,ip):

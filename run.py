@@ -74,24 +74,18 @@ def register():
 @route('/')
 @route('/home')
 def index():
-	if security.is_logged_on():
-		return fEngine.load_and_render("index")
-	else:
-		return fEngine.load_and_render("login")
+	security.is_logged_on()
+	return fEngine.load_and_render("index")
 
 @get('/sql_test')
 def sql_test():
-	if security.is_logged_on():
-		return fEngine.load_and_render("sql_test", debug_text=model.get_users())
-	else:
-		return fEngine.load_and_render("login")
+	security.is_logged_on()
+	return fEngine.load_and_render("sql_test", debug_text=model.get_users())
 
 @get('/about')
 def about():
-	if security.is_logged_on():
-		return fEngine.load_and_render("about", garble="blah")
-	else:
-		return fEngine.load_and_render("login")
+	security.is_logged_on()
+	return fEngine.load_and_render("about", garble="blah")
 
 #-----------------------------------------------------------------------------
 # POST REQUESTS
@@ -132,7 +126,7 @@ def do_login():
 #-----------------------------------------------------------------------------
 
 fEngine = FrameEngine()
-# model.create_tables()
+model.create_tables()
 
 try:
 	run(reloader=True, host='localhost', port=8080, debug=True)
