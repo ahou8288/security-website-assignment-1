@@ -7,7 +7,6 @@ from Crypto.Random import get_random_bytes
 import os
 import re
 
-
 def brute_force(username,session_id,ip):
 	model.save_login_request(username,session_id,ip)
 	# if a certain username has been queried more than 10 times in the last minute lock it out
@@ -20,7 +19,7 @@ def is_logged_on(redir=True):
 	request_ip=request.environ.get('REMOTE_ADDR')
 	if request_cookie in all_sessions:
 		if all_sessions[request_cookie].logged_on and all_sessions[request_cookie].ip==request_ip:
-			return True
+			return all_sessions[request_cookie].user_id
 	if redir:
 		redirect('/login')
 	return False

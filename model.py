@@ -68,7 +68,6 @@ def get_salt(username):
 	return cursor.fetchone()
 
 def check_password(username,hashed):
-	print("hashed {}".format(hashed))
 	cursor=sql('''SELECT 1
 		FROM USER
 		WHERE username=? and password = ?''',username,hashed)
