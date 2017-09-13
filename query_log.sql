@@ -607,3 +607,437 @@
 2017-09-13 15:34:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
 2017-09-13 15:34:57, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
 2017-09-13 15:34:57, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:39:41, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:39:41, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:39:41, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:39:41, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:39:49, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:39:49, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 15:39:49, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', 'db5c794b761e2abdc3d0ffd58ba34a7c6b8352c70eaa774bb2bc55361418d21a')
+2017-09-13 15:39:57, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:39:57, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 15:39:57, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', '256c9dbc43d5304f7d8430e5e5e70f5239398ea8ae15056cc5365fe0c3fbbdeb')
+2017-09-13 15:40:53, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:40:53, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:40:56, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:40:56, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:41:03, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:41:03, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 15:41:03, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', '256c9dbc43d5304f7d8430e5e5e70f5239398ea8ae15056cc5365fe0c3fbbdeb')
+2017-09-13 15:41:53, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:41:53, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:41:59, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:41:59, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 15:41:59, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', '256c9dbc43d5304f7d8430e5e5e70f5239398ea8ae15056cc5365fe0c3fbbdeb')
+2017-09-13 15:43:20, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:43:20, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:43:24, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:43:24, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 15:43:24, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', 'befbf3516207c6bb0e8d35b853d1f4e8f3353a910ff3ee09e51ad2d022885aeb')
+2017-09-13 15:43:31, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:43:31, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 15:43:31, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', 'befbf3516207c6bb0e8d35b853d1f4e8f3353a910ff3ee09e51ad2d022885aeb')
+2017-09-13 15:43:54, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:43:54, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 15:43:54, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', '256c9dbc43d5304f7d8430e5e5e70f5239398ea8ae15056cc5365fe0c3fbbdeb')
+2017-09-13 15:44:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:44:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:44:18, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:44:18, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 15:44:18, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', '256c9dbc43d5304f7d8430e5e5e70f5239398ea8ae15056cc5365fe0c3fbbdeb')
+2017-09-13 15:44:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:44:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:44:37, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:44:37, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 15:44:37, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', '256c9dbc43d5304f7d8430e5e5e70f5239398ea8ae15056cc5365fe0c3fbbdeb')
+2017-09-13 15:44:55, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:44:55, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:46:06, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:46:06, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:48:28, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:48:28, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 15:48:28, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', '256c9dbc43d5304f7d8430e5e5e70f5239398ea8ae15056cc5365fe0c3fbbdeb')
+2017-09-13 15:48:29, SELECT * FROM USER
+2017-09-13 15:49:12, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:49:12, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:49:59, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:49:59, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:50:05, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:50:05, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 15:50:05, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', '530cd15553028b757f2f548da21f839e7354d9bd2ea0534d75d261c9b61d384b')
+2017-09-13 15:50:15, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:50:15, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 15:50:15, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', '256c9dbc43d5304f7d8430e5e5e70f5239398ea8ae15056cc5365fe0c3fbbdeb')
+2017-09-13 15:50:16, SELECT * FROM LOGIN_REQUESTS
+2017-09-13 15:52:58, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:52:58, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:53:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:53:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:53:16, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:53:16, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:53:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:53:32, CREATE TABLE USER
+			 (id        INT AUTOINCREMENT PRIMARY KEY,
+			 username   VARCHAR(20) NOT NULL,
+			 password   VARCHAR(60) NOT NULL,
+			 salt       VARCHAR(60) NOT NULL,
+			 type       INT,
+			 privelidge INT NOT NULL);
+2017-09-13 15:53:56, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:53:56, CREATE TABLE USER
+			 (id        INT AUTOINCREMENT PRIMARY KEY NOT NULL,
+			 username   VARCHAR(20) NOT NULL,
+			 password   VARCHAR(60) NOT NULL,
+			 salt       VARCHAR(60) NOT NULL,
+			 type       INT,
+			 privelidge INT NOT NULL);
+2017-09-13 15:54:04, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:54:04, CREATE TABLE USER
+			 (id        INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+			 username   VARCHAR(20) NOT NULL,
+			 password   VARCHAR(60) NOT NULL,
+			 salt       VARCHAR(60) NOT NULL,
+			 type       INT,
+			 privelidge INT NOT NULL);
+2017-09-13 15:54:04, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:54:04, CREATE TABLE LOGIN_REQUESTS
+			 (id        	INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+			 username   	VARCHAR(20) NOT NULL,
+			 session_id 	VARCHAR(60) NOT NULL,
+			 ip   			VARCHAR(15) NOT NULL,
+			 request_time	TIMESTAMP default CURRENT_TIMESTAMP);
+2017-09-13 15:54:04, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:54:04, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:54:10, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('fir', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:55:20, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:55:20, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:57:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:57:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:58:21, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:58:21, CREATE TABLE USER
+			 (id        INT PRIMARY KEY NOT NULL,
+			 username   VARCHAR(20) NOT NULL,
+			 password   VARCHAR(60) NOT NULL,
+			 salt       VARCHAR(60) NOT NULL,
+			 type       INT,
+			 privelidge INT NOT NULL);
+2017-09-13 15:58:21, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:58:21, CREATE TABLE LOGIN_REQUESTS
+			 (id        	INT PRIMARY KEY NOT NULL,
+			 username   	VARCHAR(20) NOT NULL,
+			 session_id 	VARCHAR(60) NOT NULL,
+			 ip   			VARCHAR(15) NOT NULL,
+			 request_time	TIMESTAMP default CURRENT_TIMESTAMP);
+2017-09-13 15:58:21, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:58:21, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:58:32, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 15:58:42, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:58:42, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:58:44, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:58:44, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:58:44, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:58:44, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 15:59:23, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('forst', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 16:00:03, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:00:03, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:00:12, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:00:12, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:01:20, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:01:20, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:01:48, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:01:48, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:02:15, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:02:15, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:02:27, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:02:27, CREATE TABLE USER
+			 (id        INT PRIMARY KEY,
+			 username   VARCHAR(20) NOT NULL,
+			 password   VARCHAR(60) NOT NULL,
+			 salt       VARCHAR(60) NOT NULL,
+			 type       INT,
+			 privelidge INT NOT NULL);
+2017-09-13 16:02:27, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:02:27, CREATE TABLE LOGIN_REQUESTS
+			 (id        	INT PRIMARY KEY,
+			 username   	VARCHAR(20) NOT NULL,
+			 session_id 	VARCHAR(60) NOT NULL,
+			 ip   			VARCHAR(15) NOT NULL,
+			 request_time	TIMESTAMP default CURRENT_TIMESTAMP);
+2017-09-13 16:02:27, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:02:27, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:02:38, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('sdf', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 16:02:38, SELECT id, salt
+		FROM USER
+		WHERE username=?	('sdf',)
+2017-09-13 16:02:49, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('sdf', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 16:02:49, SELECT id, salt
+		FROM USER
+		WHERE username=?	('sdf',)
+2017-09-13 16:04:53, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:04:53, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:07:13, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:07:13, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:08:01, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:08:01, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:08:10, SELECT 1 FROM USER WHERE username=?	('firstuser',)
+2017-09-13 16:08:10, 
+		INSERT INTO USER (username,password,type,privelidge,salt)
+		VALUES
+		(?,?,?,?,?)	('firstuser', '707d04369a1b1bc7e0992d2168b37f4b8ecfb9811b161927db7832e7bdfa4e82', 'marriage', 0, 'd9273098740467e96bf8117d8c489e8be513bcc497acfb5ef55aae8da0dc')
+2017-09-13 16:08:16, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 16:08:16, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 16:08:16, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', '707d04369a1b1bc7e0992d2168b37f4b8ecfb9811b161927db7832e7bdfa4e82')
+2017-09-13 16:08:18, SELECT * FROM USER
+2017-09-13 16:08:23, SELECT * FROM USER
+2017-09-13 16:08:52, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:08:52, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:08:53, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:08:53, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:09:08, 
+		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		VALUES
+		(?,?,?)	('firstuser', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 16:09:08, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstuser',)
+2017-09-13 16:09:08, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('firstuser', '707d04369a1b1bc7e0992d2168b37f4b8ecfb9811b161927db7832e7bdfa4e82')
+2017-09-13 16:09:09, SELECT * FROM LOGIN_REQUESTS
+2017-09-13 16:09:54, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:09:54, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:09:58, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:09:58, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:10:01, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:10:01, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:10:29, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:10:29, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:10:55, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:10:55, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:11:19, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:11:19, CREATE TABLE USER
+			 (id        INT PRIMARY KEY,
+			 username   VARCHAR(20) NOT NULL,
+			 password   VARCHAR(60) NOT NULL,
+			 salt       VARCHAR(60) NOT NULL,
+			 type       INT,
+			 privelidge INT NOT NULL);
+2017-09-13 16:11:19, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:11:19, CREATE TABLE LOGIN_REQUESTS
+			 (id        	INT PRIMARY KEY,
+			 username   	VARCHAR(20) NOT NULL,
+			 session_id 	VARCHAR(60) NOT NULL,
+			 ip   			VARCHAR(15) NOT NULL,
+			 request_time	TIMESTAMP default CURRENT_TIMESTAMP);
+2017-09-13 16:11:19, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:11:19, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:11:43, SELECT 1 FROM USER WHERE username=?	('f',)
+2017-09-13 16:11:43, SELECT MAX(id) FROM ?	('LOGIN_REQUESTS',)
+2017-09-13 16:12:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:12:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:12:13, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:12:13, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:13:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:13:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:13:50, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:13:50, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:13:50, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:13:50, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:13:50, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:13:50, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:14:05, SELECT MAX(id) FROM USER
+2017-09-13 16:14:05, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?)	((None,), 'f', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 16:14:45, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:14:45, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:14:45, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:14:53, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:14:53, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:14:53, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:15:29, SELECT 1 FROM USER WHERE username=?	('blah',)
+2017-09-13 16:15:29, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:15:29, 
+		INSERT INTO USER (id,username,password,type,privelidge,salt)
+		VALUES
+		(?,?,?,?,?,?)	((None,), 'blah', 'c17fec71c64418e5a022f39637c20699ab7d0aaff1b22f2641056f41aabd6ace', 'marriage', 0, 'a0eba1764ebb8b77068fa2ca913c8648ed9dfe17a93461cfb1e342a7ce22')
+2017-09-13 16:16:20, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:16:20, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:16:20, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:16:22, SELECT 1 FROM USER WHERE username=?	('blah',)
+2017-09-13 16:16:22, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:16:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:16:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:16:31, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:16:46, SELECT MAX(id) FROM USER
+2017-09-13 16:17:13, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:17:13, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:17:13, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:18:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:18:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:18:33, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:18:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:18:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:18:39, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:18:52, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:18:52, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:18:52, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:18:55, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:18:55, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:18:55, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:19:00, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:19:00, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:19:00, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:19:10, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:19:28, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:19:28, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:19:28, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:19:35, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:19:35, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:19:35, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:19:41, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:19:41, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(1, 'blah', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 16:19:41, SELECT id, salt
+		FROM USER
+		WHERE username=?	('blah',)
+2017-09-13 16:20:04, SELECT 1 FROM USER WHERE username=?	('blah',)
+2017-09-13 16:20:04, SELECT MAX(id) FROM USER
+2017-09-13 16:20:04, 
+		INSERT INTO USER (id,username,password,type,privelidge,salt)
+		VALUES
+		(?,?,?,?,?,?)	(1, 'blah', '1e225f7149cf91cba859c8e7b09c06ac867a03a22859d5a457a9b80fe4108fbc', 'marriage', 0, '81802a9d6f0da7130274efc8b09d29f9e26331b70ba1333db7233eaa003c')
+2017-09-13 16:20:11, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:20:11, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(2, 'blah', '605828d71790dd86014595c373243f6e71963954d3330b74a77147bdeed3', '127.0.0.1')
+2017-09-13 16:20:11, SELECT id, salt
+		FROM USER
+		WHERE username=?	('blah',)
+2017-09-13 16:20:11, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('blah', '1e225f7149cf91cba859c8e7b09c06ac867a03a22859d5a457a9b80fe4108fbc')
+2017-09-13 16:20:13, SELECT * FROM USER
+2017-09-13 16:20:26, SELECT 1 FROM USER WHERE username=?	('sdifj',)
+2017-09-13 16:20:26, SELECT MAX(id) FROM USER
+2017-09-13 16:20:26, 
+		INSERT INTO USER (id,username,password,type,privelidge,salt)
+		VALUES
+		(?,?,?,?,?,?)	(2, 'sdifj', '5d8764ad1156ad5bccd98c91665aeeadd0410b59bc810323b154cec5cec898f2', 'marriage', 0, '2f3e9e5164c1eabb45433f79ade5118bcda2e74f80c6ec620591fd0be190')
+2017-09-13 16:20:28, SELECT * FROM USER
+2017-09-13 16:21:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:21:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:21:31, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 16:21:37, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 16:21:37, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 16:21:37, SELECT MAX(id) FROM LOGIN_REQUESTS
