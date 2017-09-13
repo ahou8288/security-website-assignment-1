@@ -557,3 +557,7 @@
 2017-09-12 21:47:18, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
 2017-09-12 21:47:27, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
 2017-09-12 21:47:27, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 14:06:12, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 14:06:12, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 14:06:13, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 14:06:13, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
