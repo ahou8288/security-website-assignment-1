@@ -1270,3 +1270,31 @@
 2017-09-13 18:27:16, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
 2017-09-13 18:27:16, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
 2017-09-13 18:27:16, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 18:33:47, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 18:33:47, CREATE TABLE USER
+			 (id        INT PRIMARY KEY,
+			 username   VARCHAR(20) NOT NULL,
+			 password   VARCHAR(60) NOT NULL,
+			 salt       VARCHAR(60) NOT NULL,
+			 role       INT);
+2017-09-13 18:33:48, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 18:33:48, CREATE TABLE LOGIN_REQUESTS
+			 (id        	INT PRIMARY KEY,
+			 username   	VARCHAR(20) NOT NULL,
+			 session_id 	VARCHAR(60) NOT NULL,
+			 ip   			VARCHAR(15) NOT NULL,
+			 request_time	TIMESTAMP default CURRENT_TIMESTAMP);
+2017-09-13 18:33:48, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 18:33:48, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 18:33:48, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-13 18:33:48, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 18:34:03, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-13 18:34:03, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(1, 'firstname', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-13 18:34:03, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('firstname',)
+2017-09-13 18:34:03, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-13 18:34:03, SELECT id, salt
+		FROM USER
+		WHERE username=?	('firstname',)
