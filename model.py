@@ -22,7 +22,7 @@ def create_tables():
 	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';")
 	if cursor.fetchone() is None:
 		sql('''CREATE TABLE USER
-			 (id        INT AUTO_INCREMENT PRIMARY KEY,
+			 (id        INT PRIMARY KEY,
 			 username   VARCHAR(20) NOT NULL,
 			 password   VARCHAR(60) NOT NULL,
 			 salt       VARCHAR(60) NOT NULL,
@@ -33,18 +33,22 @@ def create_tables():
 	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';")
 	if cursor.fetchone() is None:
 		sql('''CREATE TABLE LOGIN_REQUESTS
-			 (id        	INT AUTO_INCREMENT PRIMARY KEY,
+			 (id        	INT PRIMARY KEY,
 			 username   	VARCHAR(20) NOT NULL,
 			 session_id 	VARCHAR(60) NOT NULL,
 			 ip   			VARCHAR(15) NOT NULL,
 			 request_time	TIMESTAMP default CURRENT_TIMESTAMP);''')
 		commit()
 
+	new_id = sql('''SELECT MAX(id) FROM LOGIN_REQUESTS''').fetchone()
+
 def save_login_request(username,session_id,ip):
+	max_id=sql('''SELECT MAX(id) FROM LOGIN_REQUESTS''').fetchone()
+	new_id = int(max_id[0])+1 if max_id[0] else 1
 	cursor=sql('''
-		INSERT INTO LOGIN_REQUESTS (username,session_id,ip)
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
 		VALUES
-		(?,?,?)''',username,session_id,ip)
+		(?,?,?,?)''',new_id,username,session_id,ip)
 	conn.commit()
 
 def count_login_requests(username,session_id,ip):
@@ -55,6 +59,7 @@ def count_login_requests(username,session_id,ip):
 
 def get_users():
 	cursor = sql('''SELECT * FROM USER''')
+	# cursor = sql('''SELECT * FROM LOGIN_REQUESTS''')
 	return cursor.fetchall()
 
 def username_exists(username):
@@ -68,7 +73,6 @@ def get_salt(username):
 	return cursor.fetchone()
 
 def check_password(username,hashed):
-	print("hashed {}".format(hashed))
 	cursor=sql('''SELECT 1
 		FROM USER
 		WHERE username=? and password = ?''',username,hashed)
@@ -76,10 +80,15 @@ def check_password(username,hashed):
 
 def create_user(username, password, role, salt):
 	privelidge=0
+	
+	#find a new ID
+	max_id=sql('''SELECT MAX(id) FROM USER''').fetchone()
+	new_id = int(max_id[0])+1 if max_id[0] else 1
+
 	cursor=sql('''
-		INSERT INTO USER (username,password,type,privelidge,salt)
+		INSERT INTO USER (id,username,password,type,privelidge,salt)
 		VALUES
-		(?,?,?,?,?)''',username,password,role,privelidge,salt)
+		(?,?,?,?,?,?)''',new_id,username,password,role,privelidge,salt)
 	conn.commit()
 
 

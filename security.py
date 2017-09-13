@@ -7,6 +7,11 @@ from Crypto.Random import get_random_bytes
 import os
 import re
 
+def current_user():
+	request_cookie = request.get_cookie('session')
+	if request_cookie in all_sessions:
+		return all_sessions[request_cookie].id_key
+	return None
 
 def brute_force(username,session_id,ip):
 	model.save_login_request(username,session_id,ip)
@@ -15,6 +20,7 @@ def brute_force(username,session_id,ip):
 	return False
 
 def is_logged_on(redir=True):
+	[print(all_sessions[i]) for i in all_sessions]
 	# Check cookie and ip address of user
 	request_cookie = request.get_cookie('session')
 	request_ip=request.environ.get('REMOTE_ADDR')
@@ -56,7 +62,7 @@ def secure_password(pwd,username):
 		return False, 'Your username cannot relate to your password.'
 	if len(set(pwd))<5:
 		return False, 'This password does not have enough different characters.'
-	if entropy(pwd)<40:
+	if entropy(pwd)<20:
 		return False, '''This password is not complicated enough.
 		Increase the length or use uppercase, lowercase, digits and special characters in your password.'''
 	return True, ''
@@ -68,7 +74,10 @@ class Session:
 		self.logged_on=logged_on
 		self.id_key=id_key
 
-	def get_data():
+	def __str__(self):
+		return str(self.get_data())
+
+	def get_data(self):
 		return [self.ip,self.logged_on,self.id_key]
 
 
@@ -83,7 +92,13 @@ def password_hash(password,salt):
 	hashed=h.new(salt+encoded_password).hexdigest()
 	return hashed
 
-def handle_login(username,password,session_id,ip):
+def handle_login(username,password):
+	session_id = request.get_cookie('session')
+	if session_id is None:
+		session_id=security.random_salt(30)
+		response.set_cookie('session',session_id,path='/')
+	ip=request.environ.get('REMOTE_ADDR')
+
 	if username is None or password is None:
 		return False, 'Please input a username and a password.'
 
