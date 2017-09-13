@@ -18,6 +18,15 @@ def sql(query,*args):
 
 	return conn.execute(query,args)
 
+def get_role_nums():
+	return {
+	"marriage":0,
+	"medical":1,
+	"funeral":2,
+	"staff":3,
+	"admin":4
+	}
+
 def create_tables():
 	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';")
 	if cursor.fetchone() is None:
@@ -26,8 +35,7 @@ def create_tables():
 			 username   VARCHAR(20) NOT NULL,
 			 password   VARCHAR(60) NOT NULL,
 			 salt       VARCHAR(60) NOT NULL,
-			 type       INT,
-			 privelidge INT NOT NULL);''')
+			 role       INT);''')
 		commit()
 
 	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';")
@@ -79,16 +87,14 @@ def check_password(username,hashed):
 	return cursor.fetchone()
 
 def create_user(username, password, role, salt):
-	privelidge=0
-	
 	#find a new ID
 	max_id=sql('''SELECT MAX(id) FROM USER''').fetchone()
 	new_id = int(max_id[0])+1 if max_id[0] else 1
 
 	cursor=sql('''
-		INSERT INTO USER (id,username,password,type,privelidge,salt)
+		INSERT INTO USER (id,username,password,role,salt)
 		VALUES
-		(?,?,?,?,?,?)''',new_id,username,password,role,privelidge,salt)
+		(?,?,?,?,?)''',new_id,username,password,role,salt)
 	conn.commit()
 
 
