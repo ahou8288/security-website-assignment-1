@@ -1,7 +1,7 @@
 import math
 import model
 from binascii import hexlify
-from bottle import request, redirect
+from bottle import request, redirect, response
 from Crypto.Hash import SHA256
 from Crypto.Random import get_random_bytes
 import os
@@ -22,13 +22,13 @@ def brute_force(username,session_id,ip):
 
 	# don't let a single user be queried more than 10 times in 10 seconds
 	# don't let a single ip query more than 10 times in 10 seconds
-	# don't let a single session/person with cookie query more than 10 times in 10 seconds
 
-	if model.count_login_requests('username',username) > 10:
+	requests_user= model.count_login_user(username)
+	requests_ip = model.count_login_ip(ip)
+
+	if requests_user > 10:
 		return True
-	if model.count_login_requests('session_id',session_id) > 10:
-		return True
-	if model.count_login_requests('ip',ip) > 10:
+	if requests_ip > 10:
 		return True
 
 	return False
@@ -116,7 +116,7 @@ def handle_login(username,password):
 
 	session_id = request.get_cookie('session')
 	if session_id is None:
-		session_id=security.random_salt(30)
+		session_id=random_salt(30)
 		response.set_cookie('session',session_id,path='/')
 	ip=request.environ.get('REMOTE_ADDR')
 

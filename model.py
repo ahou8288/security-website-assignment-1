@@ -59,14 +59,15 @@ def save_login_request(username,session_id,ip):
 		(?,?,?,?)''',new_id,username,session_id,ip)
 	conn.commit()
 
-def count_login_requests(col,value):
-	count = sql('''SELECT count(*) FROM LOGIN_REQUESTS WHERE ?=? AND request_time-CURRENT_TIMESTAMP<10''',col,value).fetchone()
-	count = count[0]
-	return count
+def count_login_user(value):
+	return sql('''SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')''',(value)).fetchone()[0]
+
+def count_login_ip(value):
+	return sql('''SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')''',(value)).fetchone()[0]
 
 def get_users():
-	cursor = sql('''SELECT * FROM USER''')
-	# cursor = sql('''SELECT * FROM LOGIN_REQUESTS''')
+	# cursor = sql('''SELECT * FROM USER''')
+	cursor = sql('''SELECT * FROM LOGIN_REQUESTS''')
 	return cursor.fetchall()
 
 def username_exists(username):
