@@ -80,7 +80,7 @@ def check_password(username,hashed):
 
 def create_user(username, password, role, salt):
 	privelidge=0
-	
+
 	#find a new ID
 	max_id=sql('''SELECT MAX(id) FROM USER''').fetchone()
 	new_id = int(max_id[0])+1 if max_id[0] else 1

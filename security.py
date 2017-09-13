@@ -1,7 +1,7 @@
 import math
 import model
 from binascii import hexlify
-from bottle import request, redirect
+from bottle import request, redirect, response
 from Crypto.Hash import SHA256
 from Crypto.Random import get_random_bytes
 import os
@@ -95,7 +95,7 @@ def password_hash(password,salt):
 def handle_login(username,password):
 	session_id = request.get_cookie('session')
 	if session_id is None:
-		session_id=security.random_salt(30)
+		session_id=random_salt(30)
 		response.set_cookie('session',session_id,path='/')
 	ip=request.environ.get('REMOTE_ADDR')
 
@@ -153,4 +153,3 @@ def handle_register(username,password,password2,role):
 
 	model.create_user(username, new_hashed_password ,role, new_salt)
 	return True, 'user created'
-

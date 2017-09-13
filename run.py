@@ -6,11 +6,11 @@ import security
 
 #-----------------------------------------------------------------------------
 # This class loads html files from the "template" directory and formats them using Python.
-# If you are unsure how this is working, just 
+# If you are unsure how this is working, just
 class FrameEngine:
-	def __init__(this, 
-		template_path="templates/", 
-		template_extension=".html", 
+	def __init__(this,
+		template_path="templates/",
+		template_extension=".html",
 		**kwargs):
 		this.template_path = template_path
 		this.template_extension = template_extension
@@ -77,6 +77,10 @@ def index():
 	security.is_logged_on()
 	return fEngine.load_and_render("index")
 
+@get('/edituser')
+def edituser():
+	return fEngine.load_and_render("edituser")
+
 @get('/sql_test')
 def sql_test():
 	security.is_logged_on()
@@ -100,7 +104,7 @@ def do_register():
 
 	success, reason = security.handle_register(username,password,password2,role)
 
-	if success: 
+	if success:
 		return fEngine.load_and_render("valid")
 	else:
 		return fEngine.load_and_render("invalid",reason=reason)
@@ -114,10 +118,47 @@ def do_login():
 
 	success, reason=security.handle_login(username,password)
 
-	if success: 
+	if success:
 		return fEngine.load_and_render("valid")
 	else:
 		return fEngine.load_and_render("invalid",reason=reason)
+
+# Update current user's info
+@post('/edituser')
+def do_edituser():
+	username = request.forms.get('username')
+	#role = request.forms.get('role')
+	# Check current password is same
+
+	if username:
+		#check if username already exists
+		model.sql('''UPDATE USER
+		SET username = ?
+		WHERE id = ?
+		''', username, security.current_user()
+		)
+		model.commit()
+	#if password and password == password2:
+			# Update old password to new password
+
+	# if password == password2:
+	# 	hashPass = security.password_hash(password, model.get_salt(username)[1])
+	# 	model.sql('''UPDATE USER
+	#     SET password = ?
+	#     WHERE id = ?
+	#     ''', (hashPass, security.currentuser())
+	#     )
+	#     model.commit()
+
+	# Updates role regardless of whether it's been changed
+	model.sql('''UPDATE USER
+	SET type = ?
+	WHERE id = ?
+	''', role, security.current_user()
+	)
+	model.commit()
+
+	return fEngine.load_and_render("valid", flag="changes committed!")
 #-----------------------------------------------------------------------------
 
 fEngine = FrameEngine()
