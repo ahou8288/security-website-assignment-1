@@ -80,7 +80,8 @@ def index():
 @get('/sql_test')
 def sql_test():
 	security.is_logged_on()
-	return fEngine.load_and_render("sql_test", debug_text=model.get_users())
+	# return fEngine.load_and_render("sql_test", debug_text=model.get_users())
+	return fEngine.load_and_render("sql_test", debug_text=security.current_user())
 
 @get('/about')
 def about():
@@ -108,16 +109,10 @@ def do_register():
 @post('/login')
 def do_login():
 	#create a session for the user
-	session_id = request.get_cookie('session')
-	if session_id is None:
-		session_id=security.random_salt(30)
-		response.set_cookie('session',session_id,path='/')
-	request_ip=request.environ.get('REMOTE_ADDR')
-
 	username = request.forms.get('username')
 	password = request.forms.get('password')
 
-	success, reason=security.handle_login(username,password,session_id,request_ip)
+	success, reason=security.handle_login(username,password)
 
 	if success: 
 		return fEngine.load_and_render("valid")
