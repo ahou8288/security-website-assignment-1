@@ -8,18 +8,35 @@ import os
 import re
 
 def current_user():
+	# returns the id of the current user as an integer
+
 	request_cookie = request.get_cookie('session')
 	if request_cookie in all_sessions:
 		return all_sessions[request_cookie].id_key
 	return None
 
 def brute_force(username,session_id,ip):
+	# blocks a login request if too many similar requests have been made recently
+
 	model.save_login_request(username,session_id,ip)
-	# if a certain username has been queried more than 10 times in the last minute lock it out
-	# if a certain ip or a certain session has made more than 10 login attempts lock it out
+
+	# don't let a single user be queried more than 10 times in 10 seconds
+	# don't let a single ip query more than 10 times in 10 seconds
+
+	requests_user= model.count_login_user(username)
+	requests_ip = model.count_login_ip(ip)
+
+	if requests_user > 10:
+		return True
+	if requests_ip > 10:
+		return True
+
 	return False
 
 def is_logged_on(redir=True):
+	# checks if a user is logged on. If not it then redirects the user to the login page.
+	# if they are looged on then it returns True and does not redirect.
+
 	[print(all_sessions[i]) for i in all_sessions]
 	# Check cookie and ip address of user
 	request_cookie = request.get_cookie('session')
@@ -38,6 +55,7 @@ banned_passwords = set([x.strip() for x in banned_passwords])
 def charset_size(pwd):
 	# find out how many different characters could have been used in this password
 	# eg. if lowercase letters are used then they are selecting from 26 characters.
+
 	chars = [[re.compile(r'[a-z]'),26],
 		[re.compile(r'[A-Z]'),26],
 		[re.compile(r'[0-9]'),10],
@@ -54,6 +72,8 @@ def entropy(pwd):
 	return math.log(charset_size(pwd))*len(pwd)
 
 def secure_password(pwd,username):
+	# checks whether a password is secure enough
+
 	if len(pwd) < 8:
 		return False, 'This password is too short.'
 	if pwd in banned_passwords:
@@ -62,7 +82,7 @@ def secure_password(pwd,username):
 		return False, 'Your username cannot relate to your password.'
 	if len(set(pwd))<5:
 		return False, 'This password does not have enough different characters.'
-	if entropy(pwd)<20:
+	if entropy(pwd)<25:
 		return False, '''This password is not complicated enough.
 		Increase the length or use uppercase, lowercase, digits and special characters in your password.'''
 	return True, ''
@@ -79,12 +99,11 @@ class Session:
 
 	def get_data(self):
 		return [self.ip,self.logged_on,self.id_key]
-
-
 all_sessions={}
 
-
 def password_hash(password,salt):
+	# Computes the hash of a password using a certain salt.
+
 	h=SHA256.new()
 	if type(salt) == str:
 		salt=salt.encode('utf-8')
@@ -93,6 +112,8 @@ def password_hash(password,salt):
 	return hashed
 
 def handle_login(username,password):
+	# Checks whether valid login details have been provided.
+
 	session_id = request.get_cookie('session')
 	if session_id is None:
 		session_id=random_salt(30)
@@ -127,10 +148,20 @@ def handle_login(username,password):
 
 
 def random_salt(salt_length):
+	#generates a new random salt
+
 	new_salt=hexlify(get_random_bytes(salt_length)).decode('utf-8')
 	return new_salt
 
 def handle_register(username,password,password2,role):
+	# Attempts to create a new user with the details supplied
+	# returns whether the registration was successful and the it was/wasn't successful.
+	role_nums = model.get_role_nums()
+	if role in role_nums:
+		role = role_nums[role]
+	else:
+		return False, 'Invalid role. Please select a dropdown option.'
+
 	salt_length=30 #in bytes
 
 	if password != password2:

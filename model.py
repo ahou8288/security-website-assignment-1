@@ -18,6 +18,15 @@ def sql(query,*args):
 
 	return conn.execute(query,args)
 
+def get_role_nums():
+	return {
+	"marriage":0,
+	"medical":1,
+	"funeral":2,
+	"staff":3,
+	"admin":4
+	}
+
 def create_tables():
 	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';")
 	if cursor.fetchone() is None:
@@ -26,8 +35,7 @@ def create_tables():
 			 username   VARCHAR(20) NOT NULL,
 			 password   VARCHAR(60) NOT NULL,
 			 salt       VARCHAR(60) NOT NULL,
-			 type       INT,
-			 privelidge INT NOT NULL);''')
+			 role       INT);''')
 		commit()
 
 	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';")
@@ -51,15 +59,15 @@ def save_login_request(username,session_id,ip):
 		(?,?,?,?)''',new_id,username,session_id,ip)
 	conn.commit()
 
-def count_login_requests(username,session_id,ip):
-	output=[sql('''SELECT count(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time-CURRENT_TIMESTAMP<10''',(username)).fetchone()]
-	output.append(sql('''SELECT count(*) FROM LOGIN_REQUESTS WHERE session_id=? AND request_time-CURRENT_TIMESTAMP<10''',(session_id)).fetchone())
-	output.append(sql('''SELECT count(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time-CURRENT_TIMESTAMP<10''',(ip)).fetchone())
-	return output
+def count_login_user(value):
+	return sql('''SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')''',(value)).fetchone()[0]
+
+def count_login_ip(value):
+	return sql('''SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')''',(value)).fetchone()[0]
 
 def get_users():
-	cursor = sql('''SELECT * FROM USER''')
-	# cursor = sql('''SELECT * FROM LOGIN_REQUESTS''')
+	# cursor = sql('''SELECT * FROM USER''')
+	cursor = sql('''SELECT * FROM LOGIN_REQUESTS''')
 	return cursor.fetchall()
 
 def username_exists(username):
@@ -79,16 +87,14 @@ def check_password(username,hashed):
 	return cursor.fetchone()
 
 def create_user(username, password, role, salt):
-	privelidge=0
-
 	#find a new ID
 	max_id=sql('''SELECT MAX(id) FROM USER''').fetchone()
 	new_id = int(max_id[0])+1 if max_id[0] else 1
 
 	cursor=sql('''
-		INSERT INTO USER (id,username,password,type,privelidge,salt)
+		INSERT INTO USER (id,username,password,role,salt)
 		VALUES
-		(?,?,?,?,?,?)''',new_id,username,password,role,privelidge,salt)
+		(?,?,?,?,?)''',new_id,username,password,role,salt)
 	conn.commit()
 
 

@@ -84,13 +84,12 @@ def edituser():
 @get('/sql_test')
 def sql_test():
 	security.is_logged_on()
-	# return fEngine.load_and_render("sql_test", debug_text=model.get_users())
-	return fEngine.load_and_render("sql_test", debug_text=security.current_user())
+	return fEngine.load_and_render("sql_test", debug_text=model.get_users())
 
 @get('/about')
 def about():
 	security.is_logged_on()
-	return fEngine.load_and_render("about", garble="blah")
+	return fEngine.load_and_render("about", garble=security.current_user())
 
 #-----------------------------------------------------------------------------
 # POST REQUESTS
