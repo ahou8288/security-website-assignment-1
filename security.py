@@ -19,8 +19,18 @@ def brute_force(username,session_id,ip):
 	# blocks a login request if too many similar requests have been made recently
 
 	model.save_login_request(username,session_id,ip)
-	# if a certain username has been queried more than 10 times in the last minute lock it out
-	# if a certain ip or a certain session has made more than 10 login attempts lock it out
+
+	# don't let a single user be queried more than 10 times in 10 seconds
+	# don't let a single ip query more than 10 times in 10 seconds
+	# don't let a single session/person with cookie query more than 10 times in 10 seconds
+
+	if model.count_login_requests('username',username) > 10:
+		return True
+	if model.count_login_requests('session_id',session_id) > 10:
+		return True
+	if model.count_login_requests('ip',ip) > 10:
+		return True
+
 	return False
 
 def is_logged_on(redir=True):
