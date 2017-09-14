@@ -1298,3 +1298,706 @@
 2017-09-13 18:34:03, SELECT id, salt
 		FROM USER
 		WHERE username=?	('firstname',)
+2017-09-14 18:16:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:16:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:16:09, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:16:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:16:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:16:09, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:21:57, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:21:57, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:21:57, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:21:57, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:21:57, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:21:57, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:39:08, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:39:08, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:39:08, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:40:11, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:40:11, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:40:11, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:40:19, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:40:19, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:40:19, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:41:37, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:41:37, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:41:37, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:52:35, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:52:35, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:52:35, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:54:37, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:54:37, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:54:37, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:54:37, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:54:37, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:54:37, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:54:52, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:54:52, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(2, 'namefour', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 18:54:52, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('namefour',)
+2017-09-14 18:54:52, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 18:54:52, SELECT id, salt
+		FROM USER
+		WHERE username=?	('namefour',)
+2017-09-14 18:55:00, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:55:00, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(3, 'namethree', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 18:55:01, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('namethree',)
+2017-09-14 18:55:01, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 18:55:01, SELECT id, salt
+		FROM USER
+		WHERE username=?	('namethree',)
+2017-09-14 18:55:29, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:55:29, CREATE TABLE USER
+			 (id        INT PRIMARY KEY,
+			 username   VARCHAR(20) NOT NULL,
+			 password   VARCHAR(60) NOT NULL,
+			 salt       VARCHAR(60) NOT NULL,
+			 role       INT);
+2017-09-14 18:55:29, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:55:29, CREATE TABLE LOGIN_REQUESTS
+			 (id        	INT PRIMARY KEY,
+			 username   	VARCHAR(20) NOT NULL,
+			 session_id 	VARCHAR(60) NOT NULL,
+			 ip   			VARCHAR(15) NOT NULL,
+			 request_time	TIMESTAMP default CURRENT_TIMESTAMP);
+2017-09-14 18:55:29, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:55:29, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 18:55:29, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 18:55:29, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:55:49, SELECT 1 FROM USER WHERE username=?	('nameone',)
+2017-09-14 18:55:49, SELECT MAX(id) FROM USER
+2017-09-14 18:55:49, 
+		INSERT INTO USER (id,username,password,role,salt)
+		VALUES
+		(?,?,?,?,?)	(1, 'nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205', 0, 'd1056ec1c144e40c8618eeb5c44e5fca392d196b4e5ed8d5796704db9722')
+2017-09-14 18:56:00, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:56:00, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(1, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 18:56:01, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 18:56:01, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 18:56:01, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 18:56:01, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 18:56:24, SELECT 1 FROM USER WHERE username=?	('nametwo',)
+2017-09-14 18:56:24, SELECT MAX(id) FROM USER
+2017-09-14 18:56:24, 
+		INSERT INTO USER (id,username,password,role,salt)
+		VALUES
+		(?,?,?,?,?)	(2, 'nametwo', '2a47bb7a485253857e765e8789e3306fa75d9992e94facc6600ddac9940438a7', 0, '5cbd3ede805ed73ea112a3c30b3f750e13c20658086b662887663fbd3ed9')
+2017-09-14 18:56:32, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 18:56:32, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(2, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 18:56:32, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 18:56:32, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 18:56:32, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 18:56:32, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 18:56:48, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 18:56:48, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 18:56:48, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 18:56:48, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 18:56:48, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:00:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:00:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:00:09, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:00:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:00:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:00:09, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:00:21, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:00:21, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(3, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:00:22, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:00:22, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:00:22, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:00:22, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 19:00:42, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:00:42, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:00:42, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 19:00:42, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:03:30, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:03:30, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:03:30, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:03:48, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:03:48, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(4, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:03:48, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:03:48, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:03:48, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:03:48, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 19:04:00, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:04:00, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:04:00, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 19:04:00, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:05:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:05:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:05:39, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:05:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:05:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:05:39, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:05:48, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:05:48, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(5, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:05:48, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:05:48, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:05:48, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:05:48, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 19:06:00, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:06:00, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:06:00, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 19:06:00, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:06:34, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:06:34, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:06:34, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:06:35, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:06:35, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:06:35, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:06:46, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:06:46, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(6, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:06:47, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:06:47, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:06:47, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:06:47, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 19:06:58, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:06:58, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:06:58, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 19:06:58, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:06:58, UPDATE USER
+                SET password = ?
+                WHERE id = ?
+                	('f827961f3c5111ea32985417f04460153f2dfeb3dfcbec311d527a60ec8e95e2', 1)
+2017-09-14 19:06:58, SELECT 1 FROM USER WHERE username=?	('nametwo',)
+2017-09-14 19:11:28, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:11:28, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:11:28, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:11:36, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:11:36, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(7, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:11:36, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:11:36, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:11:36, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:11:36, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 19:11:53, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:11:53, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:11:53, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205')
+2017-09-14 19:11:53, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:11:53, UPDATE USER
+                SET password = ?
+                WHERE id = ?
+                	('f827961f3c5111ea32985417f04460153f2dfeb3dfcbec311d527a60ec8e95e2', 1)
+2017-09-14 19:12:00, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:12:00, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(8, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:12:00, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:12:00, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:12:00, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:12:00, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'f827961f3c5111ea32985417f04460153f2dfeb3dfcbec311d527a60ec8e95e2')
+2017-09-14 19:12:18, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:12:18, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:12:18, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'f827961f3c5111ea32985417f04460153f2dfeb3dfcbec311d527a60ec8e95e2')
+2017-09-14 19:12:18, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:12:18, UPDATE USER
+                SET password = ?
+                WHERE id = ?
+                	('7b14fd34d136fffeaa07a236bcea88a347a6aca9d9c6a5ace285756ea6099205', 1)
+2017-09-14 19:12:18, SELECT 1 FROM USER WHERE username=?	('nametwo',)
+2017-09-14 19:12:28, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:12:28, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(9, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:12:28, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:12:28, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:12:28, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:12:28, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'f827961f3c5111ea32985417f04460153f2dfeb3dfcbec311d527a60ec8e95e2')
+2017-09-14 19:12:37, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:12:37, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(10, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:12:37, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:12:37, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:12:37, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:12:37, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '8096fc40dda2bf64f7b24336e68822b2960974e31ea68d45b3077c99d7729c5a')
+2017-09-14 19:12:45, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:12:45, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(11, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:12:45, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:12:45, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:12:45, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:12:45, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'f827961f3c5111ea32985417f04460153f2dfeb3dfcbec311d527a60ec8e95e2')
+2017-09-14 19:13:24, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:13:24, CREATE TABLE USER
+			 (id        INT PRIMARY KEY,
+			 username   VARCHAR(20) NOT NULL,
+			 password   VARCHAR(60) NOT NULL,
+			 salt       VARCHAR(60) NOT NULL,
+			 role       INT);
+2017-09-14 19:13:24, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:13:24, CREATE TABLE LOGIN_REQUESTS
+			 (id        	INT PRIMARY KEY,
+			 username   	VARCHAR(20) NOT NULL,
+			 session_id 	VARCHAR(60) NOT NULL,
+			 ip   			VARCHAR(15) NOT NULL,
+			 request_time	TIMESTAMP default CURRENT_TIMESTAMP);
+2017-09-14 19:13:24, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:13:24, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:13:24, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:13:24, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:13:35, SELECT 1 FROM USER WHERE username=?	('nameone',)
+2017-09-14 19:13:35, SELECT MAX(id) FROM USER
+2017-09-14 19:13:35, 
+		INSERT INTO USER (id,username,password,role,salt)
+		VALUES
+		(?,?,?,?,?)	(1, 'nameone', '4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d', 0, 'd02fd47b5f21f5928f25ffb4d435fb3c859f98edff26971161fe9d86c218')
+2017-09-14 19:14:43, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:14:43, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:14:43, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:14:49, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:14:49, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(1, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:14:50, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:14:50, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:14:50, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:14:50, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d')
+2017-09-14 19:15:01, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:15:01, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:15:01, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d')
+2017-09-14 19:15:01, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:15:01, UPDATE USER
+                SET password = ?
+                WHERE id = ?
+                	('c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee', 1)
+2017-09-14 19:15:01, SELECT 1 FROM USER WHERE username=?	('nameone',)
+2017-09-14 19:15:17, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:15:17, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:15:17, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d')
+2017-09-14 19:15:29, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:15:29, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(2, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:15:29, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:15:29, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:15:29, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:15:29, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee')
+2017-09-14 19:23:49, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:23:49, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:23:49, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:23:55, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:23:55, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:23:55, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:23:56, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:23:56, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:23:56, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:24:01, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:24:01, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(3, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:24:01, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:24:01, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:24:01, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:24:01, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee')
+2017-09-14 19:24:13, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:24:13, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:24:13, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee')
+2017-09-14 19:24:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:24:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:24:31, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:24:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:24:31, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:24:31, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:24:40, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:24:40, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(4, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:24:40, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:24:40, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:24:40, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:24:40, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee')
+2017-09-14 19:24:49, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:24:49, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:24:49, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee')
+2017-09-14 19:24:49, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:24:49, UPDATE USER
+                    SET password = ?
+                    WHERE id = ?
+                    	('4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d', 1)
+2017-09-14 19:24:59, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:24:59, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(5, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:25:00, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:25:00, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:25:00, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:25:00, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d')
+2017-09-14 19:25:10, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:25:10, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:25:10, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d')
+2017-09-14 19:25:31, SELECT 1 FROM USER WHERE username=?	('nametwo',)
+2017-09-14 19:25:31, SELECT MAX(id) FROM USER
+2017-09-14 19:25:31, 
+		INSERT INTO USER (id,username,password,role,salt)
+		VALUES
+		(?,?,?,?,?)	(2, 'nametwo', '6ca76d621e5b78e0eee79f4e0495f76b97cc4dbc98e6863df5b3d06d41e9daa4', 0, 'a80a6358cbf24c898b69e2d5e0a798f8375ff96dac9cf404aa1e29011936')
+2017-09-14 19:25:37, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:25:37, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(6, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:25:38, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:25:38, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:25:38, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:25:38, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d')
+2017-09-14 19:25:49, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:25:49, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:25:49, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d')
+2017-09-14 19:25:49, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:25:49, UPDATE USER
+                    SET password = ?
+                    WHERE id = ?
+                    	('c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee', 1)
+2017-09-14 19:25:50, SELECT 1 FROM USER WHERE username=?	('nametwo',)
+2017-09-14 19:25:59, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:25:59, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(7, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:25:59, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:25:59, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:25:59, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:25:59, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee')
+2017-09-14 19:26:18, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:26:18, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:26:18, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee')
+2017-09-14 19:26:18, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:26:18, UPDATE USER
+                    SET password = ?
+                    WHERE id = ?
+                    	('4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d', 1)
+2017-09-14 19:26:19, SELECT 1 FROM USER WHERE username=?	('nametwo',)
+2017-09-14 19:26:25, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:26:25, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(8, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:26:26, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:26:26, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:26:26, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:26:26, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d')
+2017-09-14 19:26:53, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:26:53, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:26:53, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:27:01, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:27:01, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(9, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:27:02, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:27:02, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:27:02, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:27:02, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d')
+2017-09-14 19:27:13, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:27:13, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:27:13, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d')
+2017-09-14 19:27:13, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:27:13, UPDATE USER
+                    SET password = ?
+                    WHERE id = ?
+                    	('c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee', 1)
+2017-09-14 19:27:13, SELECT 1 FROM USER WHERE username=?	('nametwo',)
+2017-09-14 19:27:20, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:27:20, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(10, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:27:20, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:27:20, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:27:20, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:27:20, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee')
+2017-09-14 19:50:36, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:50:36, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:50:36, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:50:37, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:50:37, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:50:37, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:50:46, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:50:46, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(11, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:50:46, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:50:46, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:50:46, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:50:46, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee')
+2017-09-14 19:51:05, SELECT id, username
+		FROM USER
+		WHERE id=?	(1,)
+2017-09-14 19:51:05, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:51:05, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', 'c5d86abb6ecf0fcae8c86d9e3ae2866a4b544bc4957bbfc79f8bb569c29cddee')
+2017-09-14 19:51:05, SELECT 1 FROM USER WHERE username=?	('nametwo',)
+2017-09-14 19:51:11, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:51:11, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(12, 'nameone', 'd0cad68d6f11ac95a8a0f9e84a4d9609478f0a039d8f3c61c744923c7891', '127.0.0.1')
+2017-09-14 19:51:11, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('nameone',)
+2017-09-14 19:51:11, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-14 19:51:11, SELECT id, salt
+		FROM USER
+		WHERE username=?	('nameone',)
+2017-09-14 19:51:11, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('nameone', '4ed46889c6a3d920ec2467f778b37834b46447065ffdef2fda397d11e5ad126d')
+2017-09-14 19:56:05, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:56:05, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:56:05, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:58:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:58:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:58:32, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:59:41, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:59:41, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:59:41, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 19:59:49, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 19:59:49, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 19:59:49, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 20:01:57, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 20:01:57, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 20:01:57, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-14 20:02:03, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 20:02:03, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-14 20:02:03, SELECT MAX(id) FROM LOGIN_REQUESTS

@@ -218,6 +218,7 @@ def do_edituser():
     role = request.forms.get('role')
     curpassword = request.forms.get('curpassword')
 
+    # Retrieve username of current user
     username = model.get_username(security.current_user())[1]
     # use salt and password to get hashed password
     hashed = security.password_hash(curpassword, model.get_salt(username)[1])
@@ -227,8 +228,18 @@ def do_edituser():
 
     # Check current password is matches
     if valid:
-        print(curpassword)
-        print("Passwords do match")
+        password_filled = False
+        # If password field is filled
+        if password:
+            # If password matches the confirmation password
+            if password == password2:
+                password_filled = True
+                valid_pwd, reason = security.secure_password(password,username)
+                if not valid_pwd:
+                    return fEngine.load_and_render("invalid", reason=reason)
+            else:
+                return fEngine.load_and_render("invalid", reason="New passwords do not match")
+                # Hashing and storing new pass
 
     # If username field is filled
         if newUsername:
@@ -236,6 +247,7 @@ def do_edituser():
             if model.username_exists(newUsername):
                 return fEngine.load_and_render("invalid", reason="Username is already taken")
             else:
+                # Update username
                 model.sql('''UPDATE USER
                 SET username = ?
                 WHERE id = ?
@@ -243,31 +255,33 @@ def do_edituser():
                 )
                 model.commit()
 
-        if password:
-            if password == password2:
-                hashPass = security.password_hash(password, model.get_salt(model.get_username(security.current_user())[1]))
+        if password_filled:
+            # Check if new password is valid
+            valid_pwd, reason = security.secure_password(password,username)
+            if valid_pwd:
+                # Salt and hash password
+                salt = model.get_salt(username)[1]
+                hashPass = security.password_hash(password, salt)
+                # Update password
                 model.sql('''UPDATE USER
                 SET password = ?
                 WHERE id = ?
                 ''', hashPass, security.current_user()
                 )
                 model.commit()
-            else:
-                return fEngine.load_and_render("invalid", reason="New passwords do not match")
 
-        # Updates role regardless of whether it's been changed
-        model.sql('''UPDATE USER
-        SET role = ?
-        WHERE id = ?
-        ''', role, security.current_user()
-        )
-        model.commit()
+        # Updates role if one has been selected
+        if role != "None":
+            model.sql('''UPDATE USER
+            SET role = ?
+            WHERE id = ?
+            ''', role, security.current_user()
+            )
+            model.commit()
 
         return fEngine.load_and_render("valid",reason="Info updated!")
 
     else:
-        print(curpassword)
-        print("The password is not the same")
         return fEngine.load_and_render("invalid", reason="Current password does not match")
 
 #-----------------------------------------------------------------------------
