@@ -135,6 +135,18 @@ def get_salt(username):
 		WHERE username=?''',(username))
 	return cursor.fetchone()
 
+def get_username(id):
+	cursor=sql('''SELECT id, username
+		FROM USER
+		WHERE id=?''',(id))
+	return cursor.fetchone()
+
+def get_role(username):
+	cursor=sql('''SELECT id, role
+		FROM USER
+		WHERE username=?''',(username))
+	return cursor.fetchone()
+
 def check_password(username,hashed):
 	cursor=sql('''SELECT 1
 		FROM USER
