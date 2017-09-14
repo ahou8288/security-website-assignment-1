@@ -148,6 +148,7 @@ def index():
 
 @get('/edituser')
 def edituser():
+    security.is_logged_on()
     return fEngine.load_and_render("edituser")
 
 @get('/admin')
@@ -171,16 +172,19 @@ def about():
 # display birth/death page
 @get('/medicalPrac')
 def birthAndDeath():
+    security.is_logged_on
     return fEngine.load_and_render("medicalPrac")
 
 # Display marriage page
 @get('/marriageOfficiator')
 def marriage():
+    security.is_logged_on
     return fEngine.load_and_render("marriageOfficiator")
 
 # Display funeral page
 @get('/funeralDir')
 def funeral():
+    security.is_logged_on
     return fEngine.load_and_render("funeralDir")
 #-----------------------------------------------------------------------------
 # POST REQUESTS
@@ -344,7 +348,7 @@ def do_adminEdit():
 				model.commit()
 		return fEngine.load_and_render("valid", flag="changes committed!")
 
-	else: 
+	else:
 		return fEngine.load_and_render("invalid", reason="reason")
 
 
@@ -402,7 +406,6 @@ def do_adminEdit():
 # def funeral_details():
 # familyMembers = request.forms.get('familyMembers')
 # nextOfKin = request.forms.get('nextOfKin')
->>>>>>> 0cb30f9d290cf4d731572ad7fc33aa4826ca1073
 
 #-----------------------------------------------------------------------------
 
