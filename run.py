@@ -41,43 +41,6 @@ class FrameEngine:
         rendered_template = this.load_template(header) + rendered_template
         rendered_template = rendered_template + this.load_template(tailer)
         return rendered_template
-
-#-----------------------------------------------------------------------------
-# def __init__(this,
-#     template_path="templates/",
-#     template_extension=".html",
-#     **kwargs):
-#     this.template_path = template_path
-#     this.template_extension = template_extension
-#     this.global_renders = kwargs
-#
-# def load_template(this, filename):
-#     path = this.template_path + filename + this.template_extension
-#     file = open(path, 'r')
-#     text = ""
-#     for line in file:
-#         text+= line
-#     file.close()
-#     return text
-#
-# def simple_render(this, template, **kwargs):
-#     template = template.format(**kwargs)
-#     return  template
-#
-# def render(this, template, **kwargs):
-#     keys = this.global_renders.copy() #Not the best way to do this, but backwards compatible from PEP448, in Python 3.5+ use keys = {**this.global_renters, **kwargs}
-#     keys.update(kwargs)
-#     template = this.simple_render(template, **keys)
-#     return template
-#
-# def load_and_render(this, filename, header="header", tailer="tailer", **kwargs):
-#     template = this.load_template(filename)
-#     rendered_template = this.render(template, **kwargs)
-#     rendered_template = this.load_template(header) + rendered_template
-#     rendered_template = rendered_template + this.load_template(tailer)
-#     return rendered_template
-# >>>>>>> ahmed_dev
-
 #-----------------------------------------------------------------------------
 
 # Allow image loading
@@ -149,39 +112,39 @@ def index():
 
 @get('/edituser')
 def edituser():
+    security.is_logged_on()
     return fEngine.load_and_render("edituser")
 
 @get('/admin')
 def admin():
     return fEngine.load_and_render("admin")
 
-@get('/sql_test')
-def sql_test():
-    security.is_logged_on()
-    return fEngine.load_and_render("sql_test", debug_text=model.get_users())
+# @get('/sql_test')
+# def sql_test():
+#     security.is_logged_on()
+#     return fEngine.load_and_render("sql_test", debug_text=model.get_users())
 
-@get('/about')
-def about():
-    security.is_logged_on()
-    return fEngine.load_and_render("about", garble=security.current_user())
-
-    # garble = ["leverage agile frameworks to provide a robust synopsis for high level overviews.",
-    # "provide user generated content in real-time will have multiple touchpoints for offshoring."]
-    # return fEngine.load_and_render("about", garble=np.random.choice(garble))
+# @get('/about')
+# def about():
+#     security.is_logged_on()
+#     return fEngine.load_and_render("about", garble=security.current_user())
 
 # display birth/death page
 @get('/medicalPrac')
 def birthAndDeath():
+    security.is_logged_on()
     return fEngine.load_and_render("medicalPrac")
 
 # Display marriage page
 @get('/marriageOfficiator')
 def marriage():
+    security.is_logged_on()
     return fEngine.load_and_render("marriageOfficiator")
 
 # Display funeral page
 @get('/funeralDir')
 def funeral():
+    security.is_logged_on()
     return fEngine.load_and_render("funeralDir")
 #-----------------------------------------------------------------------------
 # POST REQUESTS
@@ -218,6 +181,7 @@ def do_login():
 # Update current user's info
 @post('/edituser')
 def do_edituser():
+    security.is_logged_on()
     newUsername = request.forms.get('username')
     password = request.forms.get('password')
     password2 = request.forms.get('password2')
@@ -292,11 +256,11 @@ def do_edituser():
 
 @post('/admin')
 def do_adminEdit():
+    security.is_logged_on()
 
     username = request.forms.get('username')
     currentUserName = model.get_username(security.current_user())[1]
     userid = model.get_role(username)[0]
-    print(userid)
     if model.get_role(currentUserName)[1] == 4:
         usernameNew = request.forms.get('usernameNew')
         passwordNew = request.forms.get('passwordNew')
@@ -350,57 +314,10 @@ def do_adminEdit():
         return fEngine.load_and_render("invalid", reason="you are not the admin")
 
 
-#-----------------------------------------------------------------------------
-# #role = request.forms.get('role')
-# # Check current password is same
-#
-# if username:
-#     #check if username already exists
-#     model.sql('''UPDATE USER
-#     SET username = ?
-#     WHERE id = ?
-#     ''', username, security.current_user()
-#     )
-#     model.commit()
-# #if password and password == password2:
-#         # Update old password to new password
-#
-# # if password == password2:
-# #     hashPass = security.password_hash(password, model.get_salt(username)[1])
-# #     model.sql('''UPDATE USER
-# #     SET password = ?
-# #     WHERE id = ?
-# #     ''', (hashPass, security.currentuser())
-# #     )
-# #     model.commit()
-#
-# # Updates role regardless of whether it's been changed
-# model.sql('''UPDATE USER
-# SET type = ?
-# WHERE id = ?
-# ''', role, security.current_user()
-# )
-# model.commit()
-#
-# return fEngine.load_and_render("valid", flag="changes committed!")
-#-----------------------------------------------------------------------------
-# username = request.forms.get('username')
-# password = request.forms.get('password')
-# err_str, login = check_login(username, password)
-# if login:
-#     return fEngine.load_and_render("valid", flag=err_str)
-# else:
-#     return fEngine.load_and_render("invalid", reason=err_str)
-#     details = [weddingTime, weddingPlace, weddingGroom, weddingBride]
-# for detail in details:
-#     err_str, isEmpty = no_empty_field(detail)
-#     if isEmpty == True:
-#         popup(err_str)
-
-
 # attempt storing wedding details
 @post('/wedding')
 def wedding_details():
+    security.is_logged_on()
     time = request.forms.get('weddingTime')
     place = request.forms.get('weddingPlace')
     groom = request.forms.get('weddingGroom')
@@ -416,6 +333,7 @@ def wedding_details():
 # attempt storing divorce details
 @post('/divorce')
 def divorce_details():
+    security.is_logged_on()
     time = request.forms.get('divorceTime')
     place = request.forms.get('divorcePlace')
     husband = request.forms.get('divorceHusband')
@@ -431,6 +349,7 @@ def divorce_details():
 # attempt storing birth details
 @post('/birth')
 def birth_details():
+    security.is_logged_on()
     name = request.forms.get('birthName')
     healthcare_id = request.forms.get('healthcareID')
     time = request.forms.get('birthTime')
@@ -447,6 +366,7 @@ def birth_details():
 # attempt storing death details
 @post('/death')
 def death_details():
+    security.is_logged_on()
     name = request.forms.get('deathName')
     healthcare_id = request.forms.get('healthcareID')
     time = request.forms.get('deathTime')
@@ -467,6 +387,7 @@ def death_details():
 # attempt storing funeral details
 @post('/funeral')
 def funeral_details():
+    security.is_logged_on()
     name = request.forms.get('funeralName')
     healthcare_id = request.forms.get('healthcareID')
     family_members = request.forms.get('familyMembers')

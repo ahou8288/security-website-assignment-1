@@ -37,7 +37,7 @@ def is_logged_on(redir=True):
 	# checks if a user is logged on. If not it then redirects the user to the login page.
 	# if they are looged on then it returns True and does not redirect.
 
-	[print(all_sessions[i]) for i in all_sessions]
+	# [print(all_sessions[i]) for i in all_sessions]
 	# Check cookie and ip address of user
 	request_cookie = request.get_cookie('session')
 	request_ip=request.environ.get('REMOTE_ADDR')
