@@ -61,23 +61,6 @@ def serve_js(js):
     # return static_file(js, root='js/')
 
 #-----------------------------------------------------------------------------
-
-# # Check the login credentials
-# def check_login(username, password):
-#     login = False
-#     if username != "admin": # Wrong Username
-#         err_str = "Incorrect Username"
-#         return err_str, login
-#
-#     if password != "password":
-#         err_str = "Incorrect Password"
-#         return err_str, login
-#
-#     login_string = "Logged in!"
-#     login = True
-#     return login_string, login
-# >>>>>>> ahmed_dev
-
 # check field is not empty:
 def no_empty_field(input):
     isEmpty = True
@@ -87,9 +70,6 @@ def no_empty_field(input):
     err_str = "All fields must be completed."
 
     return err_str, isEmpty
-
-# make sure fields aren't empty
-# def check_form(detail):
 
 #-----------------------------------------------------------------------------
 # GET REQUESTS
@@ -117,6 +97,7 @@ def edituser():
 
 @get('/admin')
 def admin():
+    security.is_logged_on()
     return fEngine.load_and_render("admin")
 
 # @get('/sql_test')
