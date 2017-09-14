@@ -1,24 +1,66 @@
 
-Edit User Info
-</p>
 <p>
-<form action="/edituser" method="post">
-    Change Username: <input name="username" type="text" />
-</br>
-    Change Password: <input name="password" type="password" />
-</br>
-    Confirm New Password: <input name="password2" type="password" />
-</br>
-    Change Role: <select name="role">
-      <!-- User's current role should be top option-->
-        <option value="None">----</option>
-        <option value="0">Marriage Officiator</option>
-        <option value="1">Medical Practicioner</option>
-        <option value="2">Funeral Director</option>
-    </select>
-</br>
-    Current Password: <input name="curpassword" type="password" required/>
-    <input value="Confirm Changes" type="submit" />
-</form>
-</p>
-</center>
+    <form action="/edituser" method="post">
+        <table>
+            <thead><b><u>Edit User Info</u></b></thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label>Change Username: </label>
+                    </td>
+                    <td align="right">
+                        <input name="username" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Change Password: </label>
+                    </td>
+
+                    <td align="right">
+                        <input name="password" type="password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Confirm New Password: </label>
+                    </td>
+                    <td align="right">
+                        <input name="password2" type="password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Change Role: </label>
+                    </td>
+                    <td align="right">
+                        <select name="role">
+                            <!-- User's current role should be top option-->
+                            <option value="None">----</option>
+                            <option value="0">Marriage Officiator</option>
+                            <option value="1">Medical Practicioner</option>
+                            <option value="2">Funeral Director</option>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td>
+                        <label>Current Password:  </label>
+                    </td>
+                    <td align="right">
+                        <input name="curpassword" type="password" required/>
+                
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Submit:  </label>
+                    </td>
+                    <td align="center">
+                        <input value="Confirm Changes" type="submit" />
+                    </td>
+                </tr>
+                
+
+            </form>
+        </p>
+    </center>
