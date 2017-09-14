@@ -93,9 +93,8 @@ def serve_css(css):
 # Allow javascript
 @route('/js/<js>')
 def serve_js(js):
-<<<<<<< HEAD
 	return static_file(js, root='js/')
-=======
+
     # return static_file(js, root='js/')
 
 #-----------------------------------------------------------------------------
