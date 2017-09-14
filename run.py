@@ -78,12 +78,16 @@ def check_login(username, password):
 
 # check field is not empty:
 def no_empty_field(input):
-	empty = True
-	if input != "":
-		empty = False
-	return empty
+    isEmpty = True
+    err_str = ""
+    if input != "" and input != None:
+        isEmpty = False
+    err_str = "All fields must be completed."
+
+    return err_str, isEmpty
 
 # make sure fields aren't empty
+# def check_form(detail):
 
 #-----------------------------------------------------------------------------
 # GET REQUESTS
@@ -151,43 +155,51 @@ def do_login():
     else:
         return fEngine.load_and_render("invalid", reason=err_str)
 
-# store wedding details
+# attempt storing wedding details
 @post('/marriageOfficiator')
 def wedding_details():
+    details = []
     weddingTime = request.forms.get('marriageTime')
     weddingPlace = request.forms.get('weddingPlace')
-	weddingGroom = request.forms.get('weddingGroom')
-	weddingBride = request.forms.get('weddingBride')
+    weddingGroom = request.forms.get('weddingGroom')
+    weddingBride = request.forms.get('weddingBride')
+    details.append(weddingTime)
+    details.append(weddingPlace)
+    details.append(weddingGroom)
+    details.append(weddingBride)
+    for detail in details:
+        no_empty_field(detail)
 
 
-# store divorce details
+
+# attempt storing divorce details
 @post('/marriageOfficiator')
 def divorce_details():
     divorceTime = request.forms.get('divorceTime')
     divorcePlace = request.forms.get('divorcePlace')
-	divorceHusband = request.forms.get('divorceHusband')
-	divorceWife = request.forms.get('divorceWife')
+    divorceHusband = request.forms.get('divorceHusband')
+    divorceWife = request.forms.get('divorceWife')
 
-# store birth details
+# attempt storing birth details
 @post('/medicalPrac')
 def birth_details():
     birthTime = request.forms.get('birthTime')
     birthPlace = request.forms.get('birthPlace')
-	birthFather = request.forms.get('birthFather')
-	birthMother = request.forms.get('birthMother')
+    birthFather = request.forms.get('birthFather')
+    birthMother = request.forms.get('birthMother')
 
-# store death details
+# attempt storing death details
 @post('/medicalPrac')
 def death_details():
     deathTime = request.forms.get('deathTime')
     deathCause = request.forms.get('deathCause')
-	deathAutopsy = request.forms.get('deathAustopsy')
+    deathAutopsy = request.forms.get('deathAustopsy')
 
-# store funeral details
+# attempt storing funeral details
 @post('/funeralDir')
 def funeral_details():
     familyMembers = request.forms.get('familyMembers')
-	nextOfKin = request.forms.get('nextOfKin')
+    nextOfKin = request.forms.get('nextOfKin')
 
 #-----------------------------------------------------------------------------
 

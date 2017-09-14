@@ -62,3 +62,5 @@
 2017-09-10 22:55:46, SELECT * FROM USER
 2017-09-10 23:05:25, SELECT * FROM USER
 2017-09-10 23:05:37, SELECT name FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-13 15:41:10, SELECT name FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-14 11:33:47, SELECT name FROM sqlite_master WHERE type='table' AND name='USER';
