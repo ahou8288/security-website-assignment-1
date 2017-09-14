@@ -2,6 +2,32 @@
 <link rel="stylesheet" type="text/css" href="css/temp.css">
 <css src="css/temp.css">
 <title>INFO2315 Assignment 1</title>
+<script>
+function openTab(evt, Type) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(Type).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+
+
+
+
 </head>
 
 <p>
@@ -12,10 +38,16 @@
   <li><a href="/edituser">Edit User</a></li>
   <li><a href="/about">About</a></li>
   <li><a href="/sql_test">Debug Sql</a></li>
+<<<<<<< HEAD
   <li><a href="/admin">Admin</a></li>
+=======
+  <li><a href="/marriageOfficiator">Marriage Officiator</a></li>
+  <li><a href="/medicalPrac">Medical Practioner</a></li>
+  <li><a href="/funeralDir">Funeral Director</a></li>
+>>>>>>> 0cb30f9d290cf4d731572ad7fc33aa4826ca1073
 </ul>
 </p>
-<center><h2>Births, Deaths, Marriage</h2>
+<center><h1>Births, Deaths, Marriage</h1>
 
 
 <h3><i>A record of births, deaths and marriages.</i></h3>

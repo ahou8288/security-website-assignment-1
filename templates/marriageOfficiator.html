@@ -1,0 +1,57 @@
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Wedding')" id="defaultOpen">Wedding</button>
+  <button class="tablinks" onclick="openTab(event, 'Divorce')">Divorce</button>
+</div>
+
+<div id="Wedding" class="tabcontent">
+  <h3>Wedding</h3>
+  Enter time, place and participants for the wedding:
+  </p>
+  <form action="/marriageOfficiator" method="post">
+     Time: <input name="weddingTime" type="date" />
+  </br>
+	</br>
+  	Place: <input name="weddingPlace" type="text" />
+  </br>
+  </br>
+  	Groom: <input name="weddingGroom" type="text" />
+  <!-- </br> -->
+  	Bride: <input name="weddingBride" type="text" />
+  </br>
+  </br>
+  	<input value="Confirm Entry" type="submit" />
+  </br>
+</div>
+
+
+<div id="Divorce" class="tabcontent">
+  <h3>Divorce</h3>
+  Enter time, place and participants for the divorce:
+  </p>
+  <p>
+  <form action="/marriageOfficiator" method="post">
+   Time: <input name="divorceTime" type="date" />
+  </br>
+  </br>
+  	Place: <input name="divorcePlace" type="text" />
+  </br>
+  </br>
+  	Husband: <input name="divorceHusband" type="text" />
+  <!-- </br> -->
+  	Wife: <input name="divorceWife" type="text" />
+  </br>
+  </br>
+  	<input value="Confirm Entry" type="submit" />
+  </br>
+</div>
+
+
+
+</form>
+</p>
+</center>
+
+<script>
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
