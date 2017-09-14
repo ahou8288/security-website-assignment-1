@@ -184,3 +184,38 @@ def handle_register(username,password,password2,role):
 
 	model.create_user(username, new_hashed_password ,role, new_salt)
 	return True, 'user created'
+
+def handle_wedding_form(time, place, groom, bride):
+	if time != None and place != None and groom != None and bride != None:
+		model.wedding_form(time, place, groom, bride)
+		return True
+	else:
+		return False
+
+def handle_divorce_form(time, place, husband, wife):
+	if time != None and place != None and husband != None and wife != None:
+		model.divorce_form(time, place, husband, wife)
+		return True
+	else:
+		return False
+
+def handle_birth_form(name, healthcare_id, b_time, place, father, mother):
+	if name != None and healthcare_id != None and b_time != None and place != None and father != None and mother != None:
+		model.birth_form(name, healthcare_id, b_time, place, father, mother)
+		return True
+	else:
+		return False
+
+def handle_death_form(name, healthcare_id, d_time, cause, autopsy):
+	if name != None and healthcare_id != None and d_time != None and cause != None and autopsy != None:
+		model.death_form(name, healthcare_id, d_time, cause, autopsy)
+		return True
+	else:
+		return False
+
+def handle_funeral_form(name, healthcare_id, family_members, next_of_kin):
+	if name != None and healthcare_id != None and family_members != None and next_of_kin != None:
+		model.funeral_form(name, healthcare_id, family_members, next_of_kin)
+		return True
+	else:
+		return False
