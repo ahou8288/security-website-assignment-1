@@ -130,6 +130,7 @@ def no_empty_field(input):
 
 #-----------------------------------------------------------------------------
 # GET REQUESTS
+
 # Display the login page
 @get('/login')
 def login():
@@ -188,6 +189,7 @@ def funeral():
     return fEngine.load_and_render("funeralDir")
 #-----------------------------------------------------------------------------
 # POST REQUESTS
+
 # Deal with the registration
 @post('/register')
 def do_register():
@@ -346,12 +348,45 @@ def do_adminEdit():
 				''', roleNew, userid
 				)
 				model.commit()
-		return fEngine.load_and_render("valid", flag="changes committed!")
+		return fEngine.load_and_render("valid", reason="changes committed!")
 
 	else:
-		return fEngine.load_and_render("invalid", reason="reason")
+		return fEngine.load_and_render("invalid", reason="you are not the admin")
 
 
+#-----------------------------------------------------------------------------
+# #role = request.forms.get('role')
+# # Check current password is same
+#
+# if username:
+# 	#check if username already exists
+# 	model.sql('''UPDATE USER
+# 	SET username = ?
+# 	WHERE id = ?
+# 	''', username, security.current_user()
+# 	)
+# 	model.commit()
+# #if password and password == password2:
+# 		# Update old password to new password
+#
+# # if password == password2:
+# # 	hashPass = security.password_hash(password, model.get_salt(username)[1])
+# # 	model.sql('''UPDATE USER
+# #     SET password = ?
+# #     WHERE id = ?
+# #     ''', (hashPass, security.currentuser())
+# #     )
+# #     model.commit()
+#
+# # Updates role regardless of whether it's been changed
+# model.sql('''UPDATE USER
+# SET type = ?
+# WHERE id = ?
+# ''', role, security.current_user()
+# )
+# model.commit()
+#
+# return fEngine.load_and_render("valid", flag="changes committed!")
 #-----------------------------------------------------------------------------
 # username = request.forms.get('username')
 # password = request.forms.get('password')
@@ -361,18 +396,15 @@ def do_adminEdit():
 # else:
 # 	return fEngine.load_and_render("invalid", reason=err_str)
 #
-# # attempt storing wedding details
-# @post('/marriageOfficiator')
-# def wedding_details():
-# details = []
-# weddingTime = request.forms.get('marriageTime')
-# weddingPlace = request.forms.get('weddingPlace')
-# weddingGroom = request.forms.get('weddingGroom')
-# weddingBride = request.forms.get('weddingBride')
-# details.append(weddingTime)
-# details.append(weddingPlace)
-# details.append(weddingGroom)
-# details.append(weddingBride)
+# attempt storing wedding details
+
+@post('/marriageOfficiator')
+def wedding_details():
+	weddingTime = request.forms.get('marriageTime')
+	weddingPlace = request.forms.get('weddingPlace')
+	weddingGroom = request.forms.get('weddingGroom')
+	weddingBride = request.forms.get('weddingBride')
+# 	details = [weddingTime, weddingPlace, weddingGroom, weddingBride]
 # for detail in details:
 # 	no_empty_field(detail)
 #
@@ -406,6 +438,46 @@ def do_adminEdit():
 # def funeral_details():
 # familyMembers = request.forms.get('familyMembers')
 # nextOfKin = request.forms.get('nextOfKin')
+# 	err_str, isEmpty = no_empty_field(detail)
+# 	if isEmpty == True:
+# 		popup(err_str)
+
+
+
+# attempt storing divorce details
+@post('/marriageOfficiator')
+def divorce_details():
+	divorceTime = request.forms.get('divorceTime')
+	divorcePlace = request.forms.get('divorcePlace')
+	divorceHusband = request.forms.get('divorceHusband')
+	divorceWife = request.forms.get('divorceWife')
+
+# attempt storing birth details
+@post('/medicalPrac')
+def birth_details():
+	birthName = request.forms.get('birthName')
+	healthcareID = request.forms.get('healthcareID')
+	birthTime = request.forms.get('birthTime')
+	birthPlace = request.forms.get('birthPlace')
+	birthFather = request.forms.get('birthFather')
+	birthMother = request.forms.get('birthMother')
+
+# attempt storing death details
+@post('/medicalPrac')
+def death_details():
+	deathName = request.forms.get('deathName')
+	healthcareID = request.forms.get('healthcareID')
+	deathTime = request.forms.get('deathTime')
+	deathCause = request.forms.get('deathCause')
+	deathAutopsy = request.forms.get('deathAustopsy')
+
+# attempt storing funeral details
+@post('/funeralDir')
+def funeral_details():
+	funeralName = request.forms.get('funeralName')
+	healthcareID = request.forms.get('healthcareID')
+	familyMembers = request.forms.get('familyMembers')
+	nextOfKin = request.forms.get('nextOfKin')
 
 #-----------------------------------------------------------------------------
 

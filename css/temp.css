@@ -3,7 +3,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #001f3f;
 }
 
 li {
@@ -26,6 +26,8 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font: 15px arial, sans-serif;
+
 }
 
 img {
@@ -37,9 +39,19 @@ img {
 }
 
 html, body, {
+    
     position:fixed;
+    
     top:0;
     bottom:0;
     left:0;
     right:0;
+    
 }
+
+input{
+    /*float:right;*/
+    padding: 0;
+}
+
+

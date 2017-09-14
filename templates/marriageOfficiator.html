@@ -8,15 +8,15 @@
   Enter time, place and participants for the wedding:
   </p>
   <form action="/marriageOfficiator" method="post">
-     Time: <input name="weddingTime" type="date" />
+     Time: <input name="weddingTime" type="date" required />
   </br>
 	</br>
-  	Place: <input name="weddingPlace" type="text" />
+  	Place: <input name="weddingPlace" type="text" required />
   </br>
   </br>
-  	Groom: <input name="weddingGroom" type="text" />
+  	Groom: <input name="weddingGroom" type="text" required />
   <!-- </br> -->
-  	Bride: <input name="weddingBride" type="text" />
+  	Bride: <input name="weddingBride" type="text" required/>
   </br>
   </br>
   	<input value="Confirm Entry" type="submit" />
@@ -30,15 +30,15 @@
   </p>
   <p>
   <form action="/marriageOfficiator" method="post">
-   Time: <input name="divorceTime" type="date" />
+   Time: <input name="divorceTime" type="date" required/>
   </br>
   </br>
-  	Place: <input name="divorcePlace" type="text" />
+  	Place: <input name="divorcePlace" type="text" required/>
   </br>
   </br>
-  	Husband: <input name="divorceHusband" type="text" />
+  	Husband: <input name="divorceHusband" type="text" required/>
   <!-- </br> -->
-  	Wife: <input name="divorceWife" type="text" />
+  	Wife: <input name="divorceWife" type="text" required/>
   </br>
   </br>
   	<input value="Confirm Entry" type="submit" />

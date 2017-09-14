@@ -9,15 +9,21 @@
   </p>
   <p>
   <form action="/birthDetails" method="post">
-     Time: <input name="birthTime" type="date" />
+     Name: <input name="birthName" type="text" required/>
+    </br>
+    </br>
+    Individual healthcare ID: <input name="healthcareID" type="number" required/>
+    </br>
+     </br>
+     Time: <input name="birthTime" type="date" required/>
   </br>
   </br>
-  	Place: <input name="birthPlace" type="text" />
+  	Place: <input name="birthPlace" type="text" required/>
   </br>
   </br>
-  	Father: <input name="birthFather" type="text" />
+  	Father: <input name="birthFather" type="text" required/>
   <!-- </br> -->
-  	Mother: <input name="birthMother" type="text" />
+  	Mother: <input name="birthMother" type="text" required/>
   </br>
   </br>
   	<input value="Confirm Entry" type="submit" />
@@ -27,20 +33,26 @@
 
 <div id="Death" class="tabcontent">
   <h3>Death</h3>
-  Enter time, cause and use of autopsy for the death:
+  Enter name, time, cause and use of autopsy for the death:
   </p>
   <p>
   <form action="/deathDetails" method="post">
-   Time: <input name="deathTime" type="date" />
+   Name: <input name="deathName" type="text" required/>
+   </br>
+   </br>
+   Individual healthcare ID: <input name="healthcareID" type="number" required/>
+    </br>
+     </br>
+   Time: <input name="deathTime" type="date" required/>
   </br>
   </br>
-  	Cause: <input name="deathCause" type="text" />
+  	Cause: <input name="deathCause" type="text" required/>
   </br>
   </br>
-  	Autopsy: <input name="autopsy" type="boolean" />
+  	Autopsy: <input name="autopsy" type="checkbox" />
   </br>
   </br>
-  	<input value="Confirm Entry" type="submit" />
+  	<input value="Confirm Entry" type="submit" required/>
   </br>
 </div>
 

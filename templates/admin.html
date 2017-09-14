@@ -1,24 +1,61 @@
 
-Admin Edits User Info
-</p>
 <p>
-<form action="/admin" method="post">
-    Input Username: <input name="username" type="text"  required/>
-</br>
-    Change Username: <input name="usernameNew" type="text" />
-</br>
-    Change Password: <input name="passwordNew" type="password" />
-</br>
-    Change Role: <select name="role">
-      <!-- User's current role should be top option-->
-        <option value="marriage">Marriage Officiator</option>
-        <option value="medical">Medical Practicioner</option>
-        <option value="funeral">Funeral Director</option>
-        <option value="staff">Staff</option>
-        <option value="admin">Admin</option>
-    </select>
-        <input value="Confirm Changes" type="submit" />
-</br>
+    <form action="/admin" method="post">
+        <table>
+            <thead><b><u>Admin Page</u></b></thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label>Input Username: </label>
+                    </td>
+                    <td align="right">
+                        <input name="username" type="text" required="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Change Username: </label>
+                    </td>
+                    <td align="right">
+                        <input name="usernameNew" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Change Password: </label>
+                    </td>
+                    <td align="right">
+                        <input name="passwordNew" type="password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Change Role: </label>
+                    </td>
+                    <td align="right">
+                        <select name="role">
+    <!-- User's current role should be top option-->
+    <option value="marriage">Marriage Officiator</option>
+    <option value="medical">Medical Practicioner</option>
+    <option value="funeral">Funeral Director</option>
+    <option value="staff">Staff</option>
+    <option value="admin">Admin</option>
+</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Confirm Changes: </label>
+                    </td>
+                    <td align="center">
+                        <input value="Confirm Changes" type="submit" />
+                    </td>
+                </tr>
+        
+
+   
+
+
 </form>
 </p>
 </center>

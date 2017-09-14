@@ -50,6 +50,61 @@ def create_tables():
 
 	new_id = sql('''SELECT MAX(id) FROM LOGIN_REQUESTS''').fetchone()
 
+	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';")
+	if cursor.fetchone() is None:
+		sql('''CREATE TABLE WEDDING_FORMS
+			 (id        	INT PRIMARY KEY,
+			 w_time			DATE NOT NULL,
+			 place 			VARCHAR(50) NOT NULL,
+			 groom   		VARCHAR(30) NOT NULL,
+			 bride			VARCHAR(30) NOT NULL);''')
+		commit()
+
+	new_id = sql('''SELECT MAX(id) FROM LOGIN_REQUESTS''').fetchone()
+
+	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';")
+	if cursor.fetchone() is None:
+		sql('''CREATE TABLE DIVORCE_FORMS
+			 (id        	INT PRIMARY KEY,
+			 d_time			DATE NOT NULL,
+			 place 			VARCHAR(50) NOT NULL,
+			 husband   		VARCHAR(30) NOT NULL,
+			 wife			VARCHAR(30) NOT NULL);''')
+		commit()
+
+	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';")
+	if cursor.fetchone() is None:
+		sql('''CREATE TABLE BIRTH_FORMS
+			 (id        	INT PRIMARY KEY,
+			 name			VARCHAR(30) NOT NULL,
+			 healthcare_id	INT NOT NULL,
+			 b_time   	 	DATE NOT NULL,
+			 place 			VARCHAR(50) NOT NULL,
+			 father			VARCHAR(30) NOT NULL,
+			 mother			VARCHAR(30) NOT NULL);''')
+		commit()
+
+	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';")
+	if cursor.fetchone() is None:
+		sql('''CREATE TABLE DEATH_FORMS
+			 (id        	INT PRIMARY KEY,
+			 name			VARCHAR(30) NOT NULL,
+			 healthcare_id	INT NOT NULL,
+			 d_time   	 	DATE NOT NULL,
+			 cause			VARCHAR(50) NOT NULL,
+			 autopsy		BOOLEAN NOT NULL);''')
+		commit()
+
+	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';")
+	if cursor.fetchone() is None:
+		sql('''CREATE TABLE FUNERAL_FORMS
+			 (id        	INT PRIMARY KEY,
+			 name			VARCHAR(50) NOT NULL,
+			 healthcare_id	INT NOT NULL,
+			 family_members VARCHAR(100) NOT NULL,
+			 next_of_kin	VARCHAR(50) NOT NULL);''')
+		commit()
+
 def save_login_request(username,session_id,ip):
 	max_id=sql('''SELECT MAX(id) FROM LOGIN_REQUESTS''').fetchone()
 	new_id = int(max_id[0])+1 if max_id[0] else 1
@@ -86,6 +141,12 @@ def get_username(id):
 		WHERE id=?''',(id))
 	return cursor.fetchone()
 
+def get_role(username):
+	cursor=sql('''SELECT id, role
+		FROM USER
+		WHERE username=?''',(username))
+	return cursor.fetchone()
+
 def check_password(username,hashed):
 	cursor=sql('''SELECT 1
 		FROM USER
@@ -103,17 +164,60 @@ def create_user(username, password, role, salt):
 		(?,?,?,?,?)''',new_id,username,password,role,salt)
 	conn.commit()
 
-def get_role(username):
-	cursor=sql('''SELECT id, role
-		FROM USER
-		WHERE username=?''',(username))
-	return cursor.fetchone()
+def wedding_form(time, place, groom, bride):
+	#new ID
+	max_id=sql('''SELECT MAX(id) FROM WEDDING_FORMS''').fetchone()
+	new_id = int(max_id[0])+1 if max_id[0] else 1
 
-def get_username(id):
-	cursor=sql('''SELECT id, username
-		FROM USER
-		WHERE id=?''',(id))
-	return cursor.fetchone()
+	cursor=sql('''
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride)
+		VALUES
+		(?,?,?,?,?)''',new_id, time, place, groom, bride)
+	conn.commit()
+
+def divorce_form(time, place, husband, wife):
+	#new ID
+	max_id=sql('''SELECT MAX(id) FROM DIVORCE_FORMS''').fetchone()
+	new_id = int(max_id[0])+1 if max_id[0] else 1
+
+	cursor=sql('''
+		INSERT INTO DIVORCE_FORMS (id, d_time, place, husband, wife)
+		VALUES
+		(?,?,?,?,?)''',new_id, time, place, husband, wife)
+	conn.commit()
+
+def birth_form(name, healthcare_id, time, place, father, mother):
+	#new ID
+	max_id=sql('''SELECT MAX(id) FROM BIRTH_FORMS''').fetchone()
+	new_id = int(max_id[0])+1 if max_id[0] else 1
+
+	cursor=sql('''
+		INSERT INTO BIRTH_FORMS (id,name, healthcare_id, b_time, place, father, mother)
+		VALUES
+		(?,?,?,?,?,?,?)''',new_id, name, healthcare_id, time, place, father, mother)
+	conn.commit()
+
+def death_form(name, healthcare_id, d_time, cause, autopsy):
+	#new ID
+	max_id=sql('''SELECT MAX(id) FROM DEATH_FORMS''').fetchone()
+	new_id = int(max_id[0])+1 if max_id[0] else 1
+
+	cursor=sql('''
+		INSERT INTO DEATH_FORMS (id, name, healthcare_id, d_time, cause, autopsy)
+		VALUES
+		(?,?,?,?,?)''',new_id, name, healthcare_id, d_time, cause, autopsy)
+	conn.commit()
+
+def funeral_form(name, healthcare_id, family_members, next_of_kin):
+	#new ID
+	max_id=sql('''SELECT MAX(id) FROM FUNERAL_FORMS''').fetchone()
+	new_id = int(max_id[0])+1 if max_id[0] else 1
+
+	cursor=sql('''
+		INSERT INTO FUNERAL_FORMS (id, name, healthcare_id, family_members, next_of_kin)
+		VALUES
+		(?,?,?,?,?)''',new_id, name, healthcare_id, family_members, next_of_kin)
+	conn.commit()
 
 
 def close():
