@@ -97,6 +97,18 @@ def create_user(username, password, role, salt):
 		(?,?,?,?,?)''',new_id,username,password,role,salt)
 	conn.commit()
 
+def get_role(username):
+	cursor=sql('''SELECT id, role
+		FROM USER
+		WHERE username=?''',(username))
+	return cursor.fetchone()
+
+def get_username(id):
+	cursor=sql('''SELECT id, username
+		FROM USER
+		WHERE id=?''',(id))
+	return cursor.fetchone()
+
 
 def close():
 	conn.close()

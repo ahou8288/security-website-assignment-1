@@ -81,6 +81,10 @@ def index():
 def edituser():
 	return fEngine.load_and_render("edituser")
 
+@get('/admin')
+def admin():
+	return fEngine.load_and_render("admin")
+
 @get('/sql_test')
 def sql_test():
 	security.is_logged_on()
@@ -158,6 +162,69 @@ def do_edituser():
 	model.commit()
 
 	return fEngine.load_and_render("valid", flag="changes committed!")
+
+@post('/admin')
+def do_adminEdit():
+
+	username = request.forms.get('username')
+	currentUserName = model.get_username(security.current_user())[1]
+	userid = model.get_role(username)[0]
+	print(userid)
+	if model.get_role(currentUserName)[1] == 4:
+		usernameNew = request.forms.get('usernameNew')
+		passwordNew = request.forms.get('passwordNew')
+		roleNew = request.forms.get('role')
+		if usernameNew:
+			if model.username_exists(usernameNew):
+				return fEngine.load_and_render("invalid", reason="invalid name")
+			else:
+				model.sql('''UPDATE USER
+				SET username = ?
+				WHERE id = ?
+				''', usernameNew, userid
+				)
+				model.commit()
+
+		if passwordNew:
+				userName1 = ''
+				if usernameNew:
+					valid_pwd, reason = security.secure_password(passwordNew, usernameNew)
+					userName1 = usernameNew
+				else:
+					valid_pwd, reason = security.secure_password(passwordNew, username)
+					userName1 = username
+
+
+				if valid_pwd:
+					salt = model.get_salt(userName1)[1]
+					hashPass= security.password_hash(passwordNew,salt)
+					model.sql('''UPDATE USER
+								SET password = ?
+								WHERE id = ?
+							''', hashPass, userid
+							)
+					model.commit()
+				else:
+					return fEngine.load_and_render("invalid", reason="invalid")
+
+
+
+
+		if roleNew:
+				model.sql('''UPDATE USER
+				SET role = ?
+				WHERE id = ?
+				''', roleNew, userid
+				)
+				model.commit()
+		return fEngine.load_and_render("valid", flag="changes committed!")
+
+	else: 
+		return fEngine.load_and_render("invalid", reason="reason")
+
+
+
+
 #-----------------------------------------------------------------------------
 
 fEngine = FrameEngine()
