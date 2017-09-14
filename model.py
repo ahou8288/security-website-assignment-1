@@ -77,7 +77,7 @@ def create_tables():
 		sql('''CREATE TABLE BIRTH_FORMS
 			 (id        	INT PRIMARY KEY,
 			 name			VARCHAR(30) NOT NULL,
-			 healthcare_id	INT FOREIGN KEY NOT NULL,
+			 healthcare_id	INT NOT NULL,
 			 b_time   	 	DATE NOT NULL,
 			 place 			VARCHAR(50) NOT NULL,
 			 father			VARCHAR(30) NOT NULL,
@@ -89,7 +89,7 @@ def create_tables():
 		sql('''CREATE TABLE DEATH_FORMS
 			 (id        	INT PRIMARY KEY,
 			 name			VARCHAR(30) NOT NULL,
-			 healthcare_id	INT FOREIGN KEY NOT NULL,
+			 healthcare_id	INT NOT NULL,
 			 d_time   	 	DATE NOT NULL,
 			 cause			VARCHAR(50) NOT NULL,
 			 autopsy		BOOLEAN NOT NULL);''')
@@ -100,7 +100,7 @@ def create_tables():
 		sql('''CREATE TABLE FUNERAL_FORMS
 			 (id        	INT PRIMARY KEY,
 			 name			VARCHAR(50) NOT NULL,
-			 healthcare_id	INT PRIMARY KEY NOT NULL,
+			 healthcare_id	INT NOT NULL,
 			 family_members VARCHAR(100) NOT NULL,
 			 next_of_kin	VARCHAR(50) NOT NULL);''')
 		commit()

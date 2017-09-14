@@ -396,10 +396,10 @@ def do_adminEdit():
 
 @post('/marriageOfficiator')
 def wedding_details():
-weddingTime = request.forms.get('marriageTime')
-weddingPlace = request.forms.get('weddingPlace')
-weddingGroom = request.forms.get('weddingGroom')
-weddingBride = request.forms.get('weddingBride')
+	weddingTime = request.forms.get('marriageTime')
+	weddingPlace = request.forms.get('weddingPlace')
+	weddingGroom = request.forms.get('weddingGroom')
+	weddingBride = request.forms.get('weddingBride')
 # 	details = [weddingTime, weddingPlace, weddingGroom, weddingBride]
 # for detail in details:
 # 	err_str, isEmpty = no_empty_field(detail)
@@ -411,37 +411,37 @@ weddingBride = request.forms.get('weddingBride')
 # attempt storing divorce details
 @post('/marriageOfficiator')
 def divorce_details():
-divorceTime = request.forms.get('divorceTime')
-divorcePlace = request.forms.get('divorcePlace')
-divorceHusband = request.forms.get('divorceHusband')
-divorceWife = request.forms.get('divorceWife')
+	divorceTime = request.forms.get('divorceTime')
+	divorcePlace = request.forms.get('divorcePlace')
+	divorceHusband = request.forms.get('divorceHusband')
+	divorceWife = request.forms.get('divorceWife')
 
 # attempt storing birth details
 @post('/medicalPrac')
 def birth_details():
-birthName = request.forms.get('birthName')
-healthcareID = request.forms.get('healthcareID')
-birthTime = request.forms.get('birthTime')
-birthPlace = request.forms.get('birthPlace')
-birthFather = request.forms.get('birthFather')
-birthMother = request.forms.get('birthMother')
+	birthName = request.forms.get('birthName')
+	healthcareID = request.forms.get('healthcareID')
+	birthTime = request.forms.get('birthTime')
+	birthPlace = request.forms.get('birthPlace')
+	birthFather = request.forms.get('birthFather')
+	birthMother = request.forms.get('birthMother')
 
 # attempt storing death details
 @post('/medicalPrac')
 def death_details():
-deathName = request.forms.get('deathName')
-healthcareID = request.forms.get('healthcareID')
-deathTime = request.forms.get('deathTime')
-deathCause = request.forms.get('deathCause')
-deathAutopsy = request.forms.get('deathAustopsy')
+	deathName = request.forms.get('deathName')
+	healthcareID = request.forms.get('healthcareID')
+	deathTime = request.forms.get('deathTime')
+	deathCause = request.forms.get('deathCause')
+	deathAutopsy = request.forms.get('deathAustopsy')
 
 # attempt storing funeral details
 @post('/funeralDir')
 def funeral_details():
-funeralName = request.forms.get('funeralName')
-healthcareID = request.forms.get('healthcareID')
-familyMembers = request.forms.get('familyMembers')
-nextOfKin = request.forms.get('nextOfKin')
+	funeralName = request.forms.get('funeralName')
+	healthcareID = request.forms.get('healthcareID')
+	familyMembers = request.forms.get('familyMembers')
+	nextOfKin = request.forms.get('nextOfKin')
 
 #-----------------------------------------------------------------------------
 
