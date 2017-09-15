@@ -72,10 +72,9 @@ def create_tables():
 			 w_time			DATE NOT NULL,
 			 place 			VARCHAR(50) NOT NULL,
 			 groom   		VARCHAR(30) NOT NULL,
-			 bride			VARCHAR(30) NOT NULL);''')
+			 bride			VARCHAR(30) NOT NULL,
+			 approved		VARCHAR(10) NOT NULL);''')
 		commit()
-
-	new_id = sql('''SELECT MAX(id) FROM LOGIN_REQUESTS''').fetchone()
 
 	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';")
 	if cursor.fetchone() is None:
@@ -84,7 +83,8 @@ def create_tables():
 			 d_time			DATE NOT NULL,
 			 place 			VARCHAR(50) NOT NULL,
 			 husband   		VARCHAR(30) NOT NULL,
-			 wife			VARCHAR(30) NOT NULL);''')
+			 wife			VARCHAR(30) NOT NULL,
+			 approved		VARCHAR(10) NOT NULL);''')
 		commit()
 
 	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';")
@@ -96,7 +96,8 @@ def create_tables():
 			 b_time   	 	DATE NOT NULL,
 			 place 			VARCHAR(50) NOT NULL,
 			 father			VARCHAR(30) NOT NULL,
-			 mother			VARCHAR(30) NOT NULL);''')
+			 mother			VARCHAR(30) NOT NULL,
+			 approved		VARCHAR(10) NOT NULL);''')
 		commit()
 
 	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';")
@@ -107,7 +108,8 @@ def create_tables():
 			 healthcare_id	INT NOT NULL,
 			 d_time   	 	DATE NOT NULL,
 			 cause			VARCHAR(50) NOT NULL,
-			 autopsy		BOOLEAN NOT NULL);''')
+			 autopsy		BOOLEAN NOT NULL,
+			 approved		VARCHAR(10) NOT NULL);''')
 		commit()
 
 	cursor = sql("SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';")
@@ -117,7 +119,8 @@ def create_tables():
 			 name			VARCHAR(50) NOT NULL,
 			 healthcare_id	INT NOT NULL,
 			 family_members VARCHAR(100) NOT NULL,
-			 next_of_kin	VARCHAR(50) NOT NULL);''')
+			 next_of_kin	VARCHAR(50) NOT NULL,
+			 approved		VARCHAR(10) NOT NULL);''')
 		commit()
 
 def save_login_request(username,session_id,ip):
@@ -179,15 +182,16 @@ def create_user(username, password, role, salt):
 		(?,?,?,?,?)''',new_id,username,password,role,salt)
 	conn.commit()
 
+
 def wedding_form(time, place, groom, bride):
 	#new ID
 	max_id=sql('''SELECT MAX(id) FROM WEDDING_FORMS''').fetchone()
 	new_id = int(max_id[0])+1 if max_id[0] else 1
 
 	cursor=sql('''
-		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride)
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride, approved)
 		VALUES
-		(?,?,?,?,?)''',new_id, time, place, groom, bride)
+		(?,?,?,?,?,"PENDING" )''',new_id, time, place, groom, bride)
 	conn.commit()
 
 def divorce_form(time, place, husband, wife):
@@ -196,9 +200,9 @@ def divorce_form(time, place, husband, wife):
 	new_id = int(max_id[0])+1 if max_id[0] else 1
 
 	cursor=sql('''
-		INSERT INTO DIVORCE_FORMS (id, d_time, place, husband, wife)
+		INSERT INTO DIVORCE_FORMS (id, d_time, place, husband, wife, approved)
 		VALUES
-		(?,?,?,?,?)''',new_id, time, place, husband, wife)
+		(?,?,?,?,?, "PENDING")''',new_id, time, place, husband, wife)
 	conn.commit()
 
 def birth_form(name, healthcare_id, time, place, father, mother):
@@ -207,9 +211,9 @@ def birth_form(name, healthcare_id, time, place, father, mother):
 	new_id = int(max_id[0])+1 if max_id[0] else 1
 
 	cursor=sql('''
-		INSERT INTO BIRTH_FORMS (id,name, healthcare_id, b_time, place, father, mother)
+		INSERT INTO BIRTH_FORMS (id,name, healthcare_id, b_time, place, father, mother, approved)
 		VALUES
-		(?,?,?,?,?,?,?)''',new_id, name, healthcare_id, time, place, father, mother)
+		(?,?,?,?,?,?,?, 'PENDING')''',new_id, name, healthcare_id, time, place, father, mother)
 	conn.commit()
 
 def death_form(name, healthcare_id, d_time, cause, autopsy):
@@ -218,9 +222,9 @@ def death_form(name, healthcare_id, d_time, cause, autopsy):
 	new_id = int(max_id[0])+1 if max_id[0] else 1
 
 	cursor=sql('''
-		INSERT INTO DEATH_FORMS (id, name, healthcare_id, d_time, cause, autopsy)
+		INSERT INTO DEATH_FORMS (id, name, healthcare_id, d_time, cause, autopsy, approved)
 		VALUES
-		(?,?,?,?,?)''',new_id, name, healthcare_id, d_time, cause, autopsy)
+		(?,?,?,?,?, "PENDING")''',new_id, name, healthcare_id, d_time, cause, autopsy)
 	conn.commit()
 
 def funeral_form(name, healthcare_id, family_members, next_of_kin):
@@ -229,9 +233,9 @@ def funeral_form(name, healthcare_id, family_members, next_of_kin):
 	new_id = int(max_id[0])+1 if max_id[0] else 1
 
 	cursor=sql('''
-		INSERT INTO FUNERAL_FORMS (id, name, healthcare_id, family_members, next_of_kin)
+		INSERT INTO FUNERAL_FORMS (id, name, healthcare_id, family_members, next_of_kin, approved)
 		VALUES
-		(?,?,?,?,?)''',new_id, name, healthcare_id, family_members, next_of_kin)
+		(?,?,?,?,?, "PENDING")''',new_id, name, healthcare_id, family_members, next_of_kin)
 	conn.commit()
 
 
