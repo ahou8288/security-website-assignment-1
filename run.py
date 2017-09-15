@@ -84,6 +84,36 @@ def login():
 def register():
 	return fEngine.load_and_render("register")
 
+@get('/view_marriage')
+def view_wedding():
+	data=model.get_all_wedding(pending=True)
+	page_heading='Wedding'
+	return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+
+@get('/view_divorce')
+def view_divorce():
+	data=model.get_all_divorce(pending=True)
+	page_heading='Divorce'
+	return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+
+@get('/view_death')
+def view_deaths():
+	data=model.get_all_deaths(pending=True)
+	page_heading='Deaths'
+	return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+
+@get('/view_birth')
+def view_births():
+	data=model.get_all_births(pending=True)
+	page_heading='Births'
+	return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+
+@get('/view_funeral')
+def view_funeral():
+	data=model.get_all_funeral(pending=True)
+	page_heading='Funeral'
+	return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+
 # Display the registration page
 @get('/table')
 def register():
