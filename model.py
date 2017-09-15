@@ -18,6 +18,21 @@ def sql(query,*args):
 
 	return conn.execute(query,args)
 
+def reset_table():
+	sql = 'DELETE FROM USER'
+	sql1 =	'DELETE FROM LOGIN_REQUESTS'
+	sql2 =	'DELETE FROM WEDDING_FORMS'
+	sql3 = 	'DELETE FROM DEATH_FORMS'
+	sql4 =	'DELETE FROM BIRTH_FORMS'
+	sql5 = 	'DELETE FROM FUNERAL_FORMS'
+	cur = conn.cursor()
+	cur.execute(sql)
+	cur.execute(sql1)
+	cur.execute(sql2)
+	cur.execute(sql3)
+	cur.execute(sql4)
+	cur.execute(sql5)
+
 def get_role_nums():
 	return {
 	"marriage":0,
