@@ -163,12 +163,17 @@ def do_login():
 @post('/edituser')
 def do_edituser():
     security.is_logged_on()
+
     newUsername = request.forms.get('username')
     password = request.forms.get('password')
     password2 = request.forms.get('password2')
     role = request.forms.get('role')
     curpassword = request.forms.get('curpassword')
 
+    # Check if required current password is provided
+    if not curpassword:
+        return fEngine.load_and_render("invalid", reason = "Please input your current password")
+    
     # Retrieve username of current user
     username = model.get_username(security.current_user())[1]
     # use salt and password to get hashed password
