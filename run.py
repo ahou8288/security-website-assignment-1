@@ -84,6 +84,28 @@ def login():
 def register():
 	return fEngine.load_and_render("register")
 
+# Display the registration page
+@get('/table')
+def register():
+	page_heading='Applications'
+	data=[['a','b'],['1','2'],['3','4']]
+
+	return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+
+def generate_table(data):
+	table_str=""
+	i=0
+	for row in data:
+		table_str+="<tr>"
+		for item in row:
+			if i==0:
+				table_str+="<th>{}</th>".format(item)
+			else:
+				table_str+="<td>{}</td>".format(item)
+		table_str+="</tr>"
+		i+=1
+	return table_str
+
 @route('/')
 @route('/home')
 def index():
