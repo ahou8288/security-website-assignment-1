@@ -1933,3 +1933,469 @@
 		INSERT INTO FUNERAL_FORMS (id, name, healthcare_id, family_members, next_of_kin)
 		VALUES
 		(?,?,?,?,?)	(2, 'sdf', '45', 'fg', 'df')
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 10:10:39, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 10:10:39, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 10:10:39, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 10:10:39, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 10:10:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 10:11:05, SELECT 1 FROM USER WHERE username=?	('safda',)
+2017-09-15 10:11:05, SELECT MAX(id) FROM USER
+2017-09-15 10:11:05, 
+		INSERT INTO USER (id,username,password,role,salt)
+		VALUES
+		(?,?,?,?,?)	(3, 'safda', '0d5166d44bdfc36b598e3b80d9dad415e6ea8b46eebe55da233452f9005c805e', 0, '6ee65c9f5a9ca3e5925795e538929c1091357b67e4a6946818c5bee4dde7')
+2017-09-15 10:11:28, SELECT 1 FROM USER WHERE username=?	('ahmed',)
+2017-09-15 10:11:28, SELECT MAX(id) FROM USER
+2017-09-15 10:11:28, 
+		INSERT INTO USER (id,username,password,role,salt)
+		VALUES
+		(?,?,?,?,?)	(4, 'ahmed', 'f93bf06e7dfc4bda574fe28cb4cf2e0007b253a2c113ca4fcf0f6080223d9f3d', 0, 'bd28a3e4f940e47c1cce461109a7fd0e1bd7aca7983d627a36043035e461')
+2017-09-15 10:11:38, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:11:38, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(2, 'ahmed', '330743bc2b59faebd3b05dfe53a51c56eddd0f53e9691c6052590be78241', '127.0.0.1')
+2017-09-15 10:11:38, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('ahmed',)
+2017-09-15 10:11:38, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-15 10:11:38, SELECT id, salt
+		FROM USER
+		WHERE username=?	('ahmed',)
+2017-09-15 10:11:38, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('ahmed', 'f93bf06e7dfc4bda574fe28cb4cf2e0007b253a2c113ca4fcf0f6080223d9f3d')
+2017-09-15 10:12:07, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 10:12:07, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride)
+		VALUES
+		(?,?,?,?,?)	(10, 'dsafadf', 'dsfsf', 'sdf', 'sdf')
+2017-09-15 10:12:11, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 10:12:11, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride)
+		VALUES
+		(?,?,?,?,?)	(11, 'dsafadf', 'dsfsf', 'sdf', 'sdf')
+2017-09-15 10:12:32, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 10:12:32, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride)
+		VALUES
+		(?,?,?,?,?)	(12, 'df', 'dfs', 'dfss', 'sdfs')
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 10:21:10, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 10:21:10, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 10:21:10, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 10:21:10, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 10:21:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 10:24:59, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:24:59, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(3, 'ahmed', '330743bc2b59faebd3b05dfe53a51c56eddd0f53e9691c6052590be78241', '127.0.0.1')
+2017-09-15 10:24:59, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('ahmed',)
+2017-09-15 10:24:59, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-15 10:24:59, SELECT id, salt
+		FROM USER
+		WHERE username=?	('ahmed',)
+2017-09-15 10:24:59, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('ahmed', 'f93bf06e7dfc4bda574fe28cb4cf2e0007b253a2c113ca4fcf0f6080223d9f3d')
+2017-09-15 10:26:25, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:26:25, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(4, 'ahmed', 'f1a9254d9ce150dc4cb84488a9bd37c2330c3e42a28db3245f34eec7d247', '127.0.0.1')
+2017-09-15 10:26:25, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('ahmed',)
+2017-09-15 10:26:25, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-15 10:26:25, SELECT id, salt
+		FROM USER
+		WHERE username=?	('ahmed',)
+2017-09-15 10:26:25, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('ahmed', 'f93bf06e7dfc4bda574fe28cb4cf2e0007b253a2c113ca4fcf0f6080223d9f3d')
+2017-09-15 10:26:52, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 10:26:52, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride)
+		VALUES
+		(?,?,?,?,?)	(13, '2017-09-06', 'fsdaf', 'sdf', 'sdfs')
+2017-09-15 10:27:16, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 10:27:16, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride)
+		VALUES
+		(?,?,?,?,?)	(14, '2017-09-04', 'sefr', 'sdf', 'sdf')
+2017-09-15 10:28:54, SELECT MAX(id) FROM BIRTH_FORMS
+2017-09-15 10:28:54, 
+		INSERT INTO BIRTH_FORMS (id,name, healthcare_id, b_time, place, father, mother)
+		VALUES
+		(?,?,?,?,?,?,?)	(3, 'ef``', '43532', '2017-09-04', 'sdsfg', 'fg', 'dfgdfg')
+2017-09-15 10:29:23, SELECT MAX(id) FROM BIRTH_FORMS
+2017-09-15 10:29:23, 
+		INSERT INTO BIRTH_FORMS (id,name, healthcare_id, b_time, place, father, mother)
+		VALUES
+		(?,?,?,?,?,?,?)	(4, 'sertd', '43523', '2017-09-06', 'ewr', 'err', 'sres')
+2017-09-15 10:29:37, SELECT MAX(id) FROM BIRTH_FORMS
+2017-09-15 10:29:37, 
+		INSERT INTO BIRTH_FORMS (id,name, healthcare_id, b_time, place, father, mother)
+		VALUES
+		(?,?,?,?,?,?,?)	(5, 'sertd', '345', '2017-09-06', 'ewr', 'err', 'sres')
+2017-09-15 10:32:12, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 10:32:12, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride)
+		VALUES
+		(?,?,?,?,?)	(15, '2017-09-04', 'sdf', 'fsd', 'fsd')
+2017-09-15 10:33:28, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 10:33:28, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride)
+		VALUES
+		(?,?,?,?,?)	(16, '2017-09-05', 'sdaf', 'sdf', 'fd')
+2017-09-15 10:34:07, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 10:34:07, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride)
+		VALUES
+		(?,?,?,?,?)	(17, '2017-09-05', 'sdaf', 'sdf', 'fd')
+2017-09-15 10:34:12, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 10:34:12, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride)
+		VALUES
+		(?,?,?,?,?)	(18, '2017-09-05', 'sdaf', 'sdf', 'fd')
+2017-09-15 10:36:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 10:36:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 10:36:33, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:36:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 10:36:33, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:36:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 10:36:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 10:36:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 10:36:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 10:36:40, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:36:40, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(5, 'ahmed', 'f1a9254d9ce150dc4cb84488a9bd37c2330c3e42a28db3245f34eec7d247', '127.0.0.1')
+2017-09-15 10:36:40, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('ahmed',)
+2017-09-15 10:36:40, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-15 10:36:40, SELECT id, salt
+		FROM USER
+		WHERE username=?	('ahmed',)
+2017-09-15 10:36:40, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('ahmed', 'f93bf06e7dfc4bda574fe28cb4cf2e0007b253a2c113ca4fcf0f6080223d9f3d')
+2017-09-15 10:39:56, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 10:39:56, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 10:39:56, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:39:56, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 10:39:56, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:39:56, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 10:39:56, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 10:39:56, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 10:39:56, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 10:40:01, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:40:01, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(6, 'ahmed', 'f1a9254d9ce150dc4cb84488a9bd37c2330c3e42a28db3245f34eec7d247', '127.0.0.1')
+2017-09-15 10:40:01, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('ahmed',)
+2017-09-15 10:40:01, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-15 10:40:01, SELECT id, salt
+		FROM USER
+		WHERE username=?	('ahmed',)
+2017-09-15 10:40:01, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('ahmed', 'f93bf06e7dfc4bda574fe28cb4cf2e0007b253a2c113ca4fcf0f6080223d9f3d')
+2017-09-15 10:52:26, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 10:52:26, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 10:52:26, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 10:52:26, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 10:52:26, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 10:52:26, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 10:52:26, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 10:52:26, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 11:22:53, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:22:53, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(7, 'ahmed', '330743bc2b59faebd3b05dfe53a51c56eddd0f53e9691c6052590be78241', '127.0.0.1')
+2017-09-15 11:22:53, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('ahmed',)
+2017-09-15 11:22:53, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-15 11:22:53, SELECT id, salt
+		FROM USER
+		WHERE username=?	('ahmed',)
+2017-09-15 11:22:53, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('ahmed', 'f93bf06e7dfc4bda574fe28cb4cf2e0007b253a2c113ca4fcf0f6080223d9f3d')
+2017-09-15 11:27:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 11:27:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 11:27:32, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:27:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 11:27:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 11:27:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 11:27:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 11:27:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 11:27:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 11:27:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 11:27:33, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:27:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 11:27:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 11:27:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 11:27:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 11:27:33, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 11:27:43, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:27:43, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(8, 'ahmed', '330743bc2b59faebd3b05dfe53a51c56eddd0f53e9691c6052590be78241', '127.0.0.1')
+2017-09-15 11:27:43, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('ahmed',)
+2017-09-15 11:27:43, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-15 11:27:43, SELECT id, salt
+		FROM USER
+		WHERE username=?	('ahmed',)
+2017-09-15 11:27:43, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('ahmed', 'f93bf06e7dfc4bda574fe28cb4cf2e0007b253a2c113ca4fcf0f6080223d9f3d')
+2017-09-15 11:28:13, SELECT MAX(id) FROM FUNERAL_FORMS
+2017-09-15 11:28:13, 
+		INSERT INTO FUNERAL_FORMS (id, name, healthcare_id, family_members, next_of_kin)
+		VALUES
+		(?,?,?,?,?)	(3, 'sdafsal', '2342', 'dfg', 'szfghgdf')
+2017-09-15 11:45:16, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 11:45:16, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 11:45:16, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:45:16, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 11:45:16, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 11:45:16, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 11:45:16, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 11:45:16, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 11:45:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 11:45:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 11:45:39, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:45:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 11:45:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 11:45:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 11:45:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 11:45:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 11:46:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 11:46:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 11:46:09, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:46:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 11:46:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 11:46:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 11:46:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 11:46:09, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 11:46:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 11:46:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 11:46:39, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:46:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 11:46:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 11:46:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 11:46:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 11:46:39, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 11:47:07, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 11:47:07, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 11:47:07, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:47:07, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 11:47:07, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 11:47:07, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 11:47:07, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 11:47:07, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 11:48:18, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 11:48:18, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 11:48:18, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:48:18, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 11:48:18, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 11:48:18, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 11:48:18, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 11:48:18, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 11:48:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 11:48:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 11:48:32, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:48:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 11:48:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 11:48:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 11:48:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 11:48:32, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 11:51:39, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:51:39, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(9, 'ahmed', '330743bc2b59faebd3b05dfe53a51c56eddd0f53e9691c6052590be78241', '127.0.0.1')
+2017-09-15 11:51:39, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('ahmed',)
+2017-09-15 11:51:39, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-15 11:51:39, SELECT id, salt
+		FROM USER
+		WHERE username=?	('ahmed',)
+2017-09-15 11:51:39, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('ahmed', 'f93bf06e7dfc4bda574fe28cb4cf2e0007b253a2c113ca4fcf0f6080223d9f3d')
+2017-09-15 11:51:55, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 11:51:55, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride, approved)
+		VALUES
+		(?,?,?,?,?,"PENDING" )	(19, 'ewqr', 'er', 're', 'oji')
+2017-09-15 11:53:37, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 11:53:37, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride, approved)
+		VALUES
+		(?,?,?,?,?,"PENDING" )	(19, 'xfg', 'fdsfd', 'gfd', 'gf')
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 11:54:10, CREATE TABLE USER
+			 (id        INT PRIMARY KEY,
+			 username   VARCHAR(20) NOT NULL,
+			 password   VARCHAR(60) NOT NULL,
+			 salt       VARCHAR(60) NOT NULL,
+			 role       INT);
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 11:54:10, CREATE TABLE LOGIN_REQUESTS
+			 (id        	INT PRIMARY KEY,
+			 username   	VARCHAR(20) NOT NULL,
+			 session_id 	VARCHAR(60) NOT NULL,
+			 ip   			VARCHAR(15) NOT NULL,
+			 request_time	TIMESTAMP default CURRENT_TIMESTAMP);
+2017-09-15 11:54:10, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 11:54:10, CREATE TABLE WEDDING_FORMS
+			 (id        	INT PRIMARY KEY,
+			 w_time			DATE NOT NULL,
+			 place 			VARCHAR(50) NOT NULL,
+			 groom   		VARCHAR(30) NOT NULL,
+			 bride			VARCHAR(30) NOT NULL,
+			 approved		VARCHAR(10) NOT NULL);
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 11:54:10, CREATE TABLE DIVORCE_FORMS
+			 (id        	INT PRIMARY KEY,
+			 d_time			DATE NOT NULL,
+			 place 			VARCHAR(50) NOT NULL,
+			 husband   		VARCHAR(30) NOT NULL,
+			 wife			VARCHAR(30) NOT NULL,
+			 approved		VARCHAR(10) NOT NULL);
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 11:54:10, CREATE TABLE BIRTH_FORMS
+			 (id        	INT PRIMARY KEY,
+			 name			VARCHAR(30) NOT NULL,
+			 healthcare_id	INT NOT NULL,
+			 b_time   	 	DATE NOT NULL,
+			 place 			VARCHAR(50) NOT NULL,
+			 father			VARCHAR(30) NOT NULL,
+			 mother			VARCHAR(30) NOT NULL,
+			 approved		VARCHAR(10) NOT NULL);
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 11:54:10, CREATE TABLE DEATH_FORMS
+			 (id        	INT PRIMARY KEY,
+			 name			VARCHAR(30) NOT NULL,
+			 healthcare_id	INT NOT NULL,
+			 d_time   	 	DATE NOT NULL,
+			 cause			VARCHAR(50) NOT NULL,
+			 autopsy		BOOLEAN NOT NULL,
+			 approved		VARCHAR(10) NOT NULL);
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 11:54:10, CREATE TABLE FUNERAL_FORMS
+			 (id        	INT PRIMARY KEY,
+			 name			VARCHAR(50) NOT NULL,
+			 healthcare_id	INT NOT NULL,
+			 family_members VARCHAR(100) NOT NULL,
+			 next_of_kin	VARCHAR(50) NOT NULL,
+			 approved		VARCHAR(10) NOT NULL);
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 11:54:10, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 11:54:10, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 11:54:20, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:54:20, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(1, 'ahmed', '330743bc2b59faebd3b05dfe53a51c56eddd0f53e9691c6052590be78241', '127.0.0.1')
+2017-09-15 11:54:20, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('ahmed',)
+2017-09-15 11:54:20, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-15 11:54:20, SELECT id, salt
+		FROM USER
+		WHERE username=?	('ahmed',)
+2017-09-15 11:54:32, SELECT 1 FROM USER WHERE username=?	('ahmed',)
+2017-09-15 11:54:32, SELECT MAX(id) FROM USER
+2017-09-15 11:54:32, 
+		INSERT INTO USER (id,username,password,role,salt)
+		VALUES
+		(?,?,?,?,?)	(1, 'ahmed', '4027d61eb7097eab74e7a07be243465aed0142b0102a6d989f7ce2fb094e5543', 0, 'ba4037efeb299f0a960f79243245d2ddb373752e6257bbbc796a5ace3022')
+2017-09-15 11:54:38, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 11:54:38, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(2, 'ahmed', '330743bc2b59faebd3b05dfe53a51c56eddd0f53e9691c6052590be78241', '127.0.0.1')
+2017-09-15 11:54:38, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('ahmed',)
+2017-09-15 11:54:38, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-15 11:54:38, SELECT id, salt
+		FROM USER
+		WHERE username=?	('ahmed',)
+2017-09-15 11:54:38, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('ahmed', '4027d61eb7097eab74e7a07be243465aed0142b0102a6d989f7ce2fb094e5543')
+2017-09-15 11:54:52, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 11:54:52, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride, approved)
+		VALUES
+		(?,?,?,?,?,"PENDING" )	(1, 'dfg', 'fdg', 'fgs', 'fd')
+2017-09-15 11:54:58, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 11:54:58, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride, approved)
+		VALUES
+		(?,?,?,?,?,"PENDING" )	(2, 'dfg', 'fdg', 'fgs', 'fd')
+2017-09-15 12:12:36, SELECT MAX(id) FROM WEDDING_FORMS
+2017-09-15 12:12:36, 
+		INSERT INTO WEDDING_FORMS (id, w_time, place, groom, bride, approved)
+		VALUES
+		(?,?,?,?,?,"PENDING" )	(3, 'dsffa', 'sfd', 'fsdfd', 'fsd')
+2017-09-15 12:12:50, SELECT MAX(id) FROM BIRTH_FORMS
+2017-09-15 12:12:50, 
+		INSERT INTO BIRTH_FORMS (id,name, healthcare_id, b_time, place, father, mother, approved)
+		VALUES
+		(?,?,?,?,?,?,?, 'PENDING')	(1, 'dfg', '45', 'dfg', 'fsd', 'f', 'fd')
+2017-09-15 12:13:44, SELECT 1 FROM sqlite_master WHERE type='table' AND name='USER';
+2017-09-15 12:13:44, SELECT 1 FROM sqlite_master WHERE type='table' AND name='LOGIN_REQUESTS';
+2017-09-15 12:13:44, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 12:13:44, SELECT 1 FROM sqlite_master WHERE type='table' AND name='WEDDING_FORMS';
+2017-09-15 12:13:44, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DIVORCE_FORMS';
+2017-09-15 12:13:44, SELECT 1 FROM sqlite_master WHERE type='table' AND name='BIRTH_FORMS';
+2017-09-15 12:13:44, SELECT 1 FROM sqlite_master WHERE type='table' AND name='DEATH_FORMS';
+2017-09-15 12:13:44, SELECT 1 FROM sqlite_master WHERE type='table' AND name='FUNERAL_FORMS';
+2017-09-15 12:14:11, SELECT MAX(id) FROM LOGIN_REQUESTS
+2017-09-15 12:14:11, 
+		INSERT INTO LOGIN_REQUESTS (id,username,session_id,ip)
+		VALUES
+		(?,?,?,?)	(3, 'ahmed', '330743bc2b59faebd3b05dfe53a51c56eddd0f53e9691c6052590be78241', '127.0.0.1')
+2017-09-15 12:14:11, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE username=? AND request_time >= Datetime('now', '-10 seconds')	('ahmed',)
+2017-09-15 12:14:11, SELECT COUNT(*) FROM LOGIN_REQUESTS WHERE ip=? AND request_time >= Datetime('now', '-10 seconds')	('127.0.0.1',)
+2017-09-15 12:14:11, SELECT id, salt
+		FROM USER
+		WHERE username=?	('ahmed',)
+2017-09-15 12:14:11, SELECT 1
+		FROM USER
+		WHERE username=? and password = ?	('ahmed', '4027d61eb7097eab74e7a07be243465aed0142b0102a6d989f7ce2fb094e5543')
+2017-09-15 12:14:20, SELECT MAX(id) FROM BIRTH_FORMS
+2017-09-15 12:14:20, 
+		INSERT INTO BIRTH_FORMS (id,name, healthcare_id, b_time, place, father, mother, approved)
+		VALUES
+		(?,?,?,?,?,?,?, 'PENDING')	(2, 'sfsd', '435', 're', 'rt', 'er', 'rt')

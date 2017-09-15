@@ -358,7 +358,7 @@ def death_details():
     else:
         autopsy = "No"
 
-    formPass = security.handle_death_form(name, healthcare_id, d_time, cause, autopsy)
+    formPass = security.handle_death_form(name, healthcare_id, time, cause, autopsy)
     if formPass == True:
         return fEngine.load_and_render("valid",reason="Application successfully filed in for review!")
     else:
