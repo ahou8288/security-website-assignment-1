@@ -238,19 +238,19 @@ def funeral_form(name, healthcare_id, family_members, next_of_kin):
 		(?,?,?,?,?, "PENDING")''',new_id, name, healthcare_id, family_members, next_of_kin)
 	conn.commit()
 
-def get_all_wedding(pending):
+def get_all_wedding():
 	cursor = sql('''SELECT id,w_time,place,groom,bride,approved FROM WEDDING_FORMS''')
 	return cursor.fetchall()
-def get_all_deaths(pending):
+def get_all_deaths():
 	cursor = sql('''SELECT id,name,healthcare_id,d_time,cause,autopsy,approved FROM DEATH_FORMS''')
 	return cursor.fetchall()
-def get_all_births(pending):
+def get_all_births():
 	cursor = sql('''SELECT id,b_time,place,father,mother,approved,name,healthcare_id FROM BIRTH_FORMS''')
 	return cursor.fetchall()
-def get_all_divorce(pending):
+def get_all_divorce():
 	cursor = sql('''SELECT id,d_time,place,husband,wife,approved FROM DIVORCE_FORMS''')
 	return cursor.fetchall()
-def get_all_funeral(pending):
+def get_all_funeral():
 	cursor = sql('''SELECT id,name,healthcare_id,family_members,next_of_kin,approved FROM FUNERAL_FORMS''')
 	return cursor.fetchall()
 

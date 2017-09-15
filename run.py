@@ -86,41 +86,64 @@ def register():
 
 @get('/view_marriage')
 def view_wedding():
-	data=model.get_all_wedding(pending=True)
+	security.is_logged_on()
+	data=[['id','w_time','place','groom','bride','approved']]+model.get_all_wedding()
 	page_heading='Wedding'
-	return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+
+	username = model.get_username(security.current_user())[1]
+	user_id = model.get_role(username)[0]
+	if model.get_role(username)[1] == 4:
+		return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+	else:
+		return fEngine.load_and_render("invalid", reason = "Your account does not have access.")
 
 @get('/view_divorce')
 def view_divorce():
-	data=model.get_all_divorce(pending=True)
+	security.is_logged_on()
+	data=[['id','d_time','place','husband','wife','approved']]+model.get_all_divorce()
 	page_heading='Divorce'
-	return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+	username = model.get_username(security.current_user())[1]
+	user_id = model.get_role(username)[0]
+	if model.get_role(username)[1] == 4:
+		return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+	else:
+		return fEngine.load_and_render("invalid", reason = "Your account does not have access.")
 
 @get('/view_death')
 def view_deaths():
-	data=model.get_all_deaths(pending=True)
+	security.is_logged_on()
+	data=[['id','name','healthcare_id','d_time','cause','autopsy','approved']]+model.get_all_deaths()
 	page_heading='Deaths'
-	return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+	username = model.get_username(security.current_user())[1]
+	user_id = model.get_role(username)[0]
+	if model.get_role(username)[1] == 4:
+		return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+	else:
+		return fEngine.load_and_render("invalid", reason = "Your account does not have access.")
 
 @get('/view_birth')
 def view_births():
-	data=model.get_all_births(pending=True)
+	security.is_logged_on()
+	data=[['id','b_time','place','father','mother','approved','name','healthcare_id']]+model.get_all_births()
 	page_heading='Births'
-	return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+	username = model.get_username(security.current_user())[1]
+	user_id = model.get_role(username)[0]
+	if model.get_role(username)[1] == 4:
+		return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+	else:
+		return fEngine.load_and_render("invalid", reason = "Your account does not have access.")
 
 @get('/view_funeral')
 def view_funeral():
-	data=model.get_all_funeral(pending=True)
+	security.is_logged_on()
+	data=[['id','name','healthcare_id','family_members','next_of_kin','approved']]+model.get_all_funeral()
 	page_heading='Funeral'
-	return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
-
-# Display the registration page
-@get('/table')
-def register():
-	page_heading='Applications'
-	data=[['a','b'],['1','2'],['3','4']]
-
-	return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+	username = model.get_username(security.current_user())[1]
+	user_id = model.get_role(username)[0]
+	if model.get_role(username)[1] == 4:
+		return fEngine.load_and_render("table",page_heading=page_heading,data_rows=generate_table(data))
+	else:
+		return fEngine.load_and_render("invalid", reason = "Your account does not have access.")
 
 def generate_table(data):
 	table_str=""
