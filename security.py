@@ -201,21 +201,24 @@ def handle_divorce_form(time, place, husband, wife):
 
 def handle_birth_form(name, healthcare_id, b_time, place, father, mother):
 	if name != None and healthcare_id != None and b_time != None and place != None and father != None and mother != None:
-		model.birth_form(name, healthcare_id, b_time, place, father, mother)
-		return True
+		if int(healthcare_id) > 0:
+			model.birth_form(name, healthcare_id, b_time, place, father, mother)
+			return True
 	else:
 		return False
 
 def handle_death_form(name, healthcare_id, d_time, cause, autopsy):
 	if name != None and healthcare_id != None and d_time != None and cause != None and autopsy != None:
-		model.death_form(name, healthcare_id, d_time, cause, autopsy)
-		return True
+		if int(healthcare_id) > 0:
+			model.death_form(name, healthcare_id, d_time, cause, autopsy)
+			return True
 	else:
 		return False
 
 def handle_funeral_form(name, healthcare_id, family_members, next_of_kin):
 	if name != None and healthcare_id != None and family_members != None and next_of_kin != None:
-		model.funeral_form(name, healthcare_id, family_members, next_of_kin)
-		return True
+		if int(healthcare_id) > 0:
+			model.funeral_form(name, healthcare_id, family_members, next_of_kin)
+			return True
 	else:
 		return False

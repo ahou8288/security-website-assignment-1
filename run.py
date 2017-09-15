@@ -268,69 +268,72 @@ def do_adminEdit():
 
 	username = request.forms.get('username')
 	currentUserName = model.get_username(security.current_user())[1]
-
-	#reset database
 	reset = request.forms.get('reset')
-	if reset:
-		if reset == 'Y':
-			model.reset_table()
-			return fEngine.load_and_render("valid", reason="changes committed!")
-		else:
-			return fEngine.load_and_render("invalid", reason="invalid")
+
+	if username:
+		userid = model.get_role(username)[0]
 
 
 	#change user's name
-	if username:
-		userid = model.get_role(username)[0]
-		if model.get_role(currentUserName)[1] == 4:
-			usernameNew = request.forms.get('usernameNew')
-			passwordNew = request.forms.get('passwordNew')
-			roleNew = request.forms.get('role')
-			if usernameNew:
-				if model.username_exists(usernameNew):
-					return fEngine.load_and_render("invalid", reason="invalid name")
-				else:
-					model.sql('''UPDATE USER
-					SET username = ?
-					WHERE id = ?
-					''', usernameNew, userid
-					)
-					model.commit()
+		# check current user's privillege
+	if model.get_role(currentUserName)[1] == 4:
+			#reset database
+
+		if reset:
+			if reset == 'Y':
+				model.reset_table()
+				return fEngine.load_and_render("valid", reason="changes committed!")
+			else:
+				return fEngine.load_and_render("invalid", reason="invalid")
+
+		usernameNew = request.forms.get('usernameNew')
+		passwordNew = request.forms.get('passwordNew')
+		roleNew = request.forms.get('role')
+		if usernameNew:
+			if model.username_exists(usernameNew):
+				return fEngine.load_and_render("invalid", reason="invalid name")
+			else:
+				model.sql('''UPDATE USER
+				SET username = ?
+				WHERE id = ?
+				''', usernameNew, userid
+				)
+				model.commit()
 
 			#change password
-			if passwordNew:
-					userName1 = ''
-					if usernameNew:
-						valid_pwd, reason = security.secure_password(passwordNew, usernameNew)
-						userName1 = usernameNew
-					else:
-						valid_pwd, reason = security.secure_password(passwordNew, username)
-						userName1 = username
+		if passwordNew:
+				userName1 = ''
+				if usernameNew:
+					valid_pwd, reason = security.secure_password(passwordNew, usernameNew)
+					userName1 = usernameNew
+				else:
+					valid_pwd, reason = security.secure_password(passwordNew, username)
+					userName1 = username
 
-					if valid_pwd:
-						salt = model.get_salt(userName1)[1]
-						hashPass= security.password_hash(passwordNew,salt)
-						model.sql('''UPDATE USER
-									SET password = ?
-									WHERE id = ?
-								''', hashPass, userid
-								)
-						model.commit()
-					else:
-						return fEngine.load_and_render("invalid", reason="invalid")
+				if valid_pwd:
+					salt = model.get_salt(userName1)[1]
+					hashPass= security.password_hash(passwordNew,salt)
+					model.sql('''UPDATE USER
+								SET password = ?
+								WHERE id = ?
+							''', hashPass, userid
+							)
+					model.commit()
+				else:
+					return fEngine.load_and_render("invalid", reason="invalid")
 
 			#change the role
-			if roleNew:
-					model.sql('''UPDATE USER
-					SET role = ?
-					WHERE id = ?
-					''', roleNew, userid
-					)
-					model.commit()
-			return fEngine.load_and_render("valid", reason="changes committed!")
+		if roleNew:
+				model.sql('''UPDATE USER
+				SET role = ?
+				WHERE id = ?
+				''', roleNew, userid
+				)
+				model.commit()
+		return fEngine.load_and_render("valid", reason="changes committed!")
 
-		else:
-			return fEngine.load_and_render("invalid", reason="you are not the admin")
+	else:
+		return fEngine.load_and_render("invalid", reason="you are not the admin")
 
 
 
