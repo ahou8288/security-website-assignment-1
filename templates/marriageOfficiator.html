@@ -1,13 +1,13 @@
 <div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Wedding')" id="defaultOpen">Wedding</button>
-  <button class="tablinks" onclick="openTab(event, 'Divorce')">Divorce</button>
+  <button class="tablinks" onclick="openTab(event, 'wedding')" id="defaultOpen">Wedding</button>
+  <button class="tablinks" onclick="openTab(event, 'divorce')">Divorce</button>
 </div>
 
-<div id="Wedding" class="tabcontent">
+<div id="wedding" class="tabcontent">
   <h3>Wedding</h3>
   Enter time, place and participants for the wedding:
   </p>
-  <form action="/marriageOfficiator" method="post">
+  <form action="/wedding" method="post">
      Time: <input name="weddingTime" type="date" required />
   </br>
 	</br>
@@ -24,12 +24,12 @@
 </div>
 
 
-<div id="Divorce" class="tabcontent">
+<div id="divorce" class="tabcontent">
   <h3>Divorce</h3>
   Enter time, place and participants for the divorce:
   </p>
   <p>
-  <form action="/marriageOfficiator" method="post">
+  <form action="/divorce" method="post">
    Time: <input name="divorceTime" type="date" required/>
   </br>
   </br>

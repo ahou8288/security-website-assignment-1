@@ -1,14 +1,14 @@
 <div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Birth')" id="defaultOpen">Birth</button>
-  <button class="tablinks" onclick="openTab(event, 'Death')">Death</button>
+  <button class="tablinks" onclick="openTab(event, 'birth')" id="defaultOpen">Birth</button>
+  <button class="tablinks" onclick="openTab(event, 'death')">Death</button>
 </div>
 
-<div id="Birth" class="tabcontent">
+<div id="birth" class="tabcontent">
   <h3>Birth</h3>
   Enter time, place and parents for the birth:
   </p>
   <p>
-  <form action="/birthDetails" method="post">
+  <form action="/birth" method="post">
      Name: <input name="birthName" type="text" required/>
     </br>
     </br>
@@ -31,12 +31,12 @@
 </div>
 
 
-<div id="Death" class="tabcontent">
+<div id="death" class="tabcontent">
   <h3>Death</h3>
   Enter name, time, cause and use of autopsy for the death:
   </p>
   <p>
-  <form action="/deathDetails" method="post">
+  <form action="/death" method="post">
    Name: <input name="deathName" type="text" required/>
    </br>
    </br>
@@ -49,7 +49,7 @@
   	Cause: <input name="deathCause" type="text" required/>
   </br>
   </br>
-  	Autopsy: <input name="autopsy" type="checkbox" />
+  	Autopsy: <input name="deathAutopsy" type="checkbox" value="Yes" checked/>
   </br>
   </br>
   	<input value="Confirm Entry" type="submit" required/>

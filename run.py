@@ -41,43 +41,6 @@ class FrameEngine:
         rendered_template = this.load_template(header) + rendered_template
         rendered_template = rendered_template + this.load_template(tailer)
         return rendered_template
-
-#-----------------------------------------------------------------------------
-# def __init__(this,
-# 	template_path="templates/",
-# 	template_extension=".html",
-# 	**kwargs):
-# 	this.template_path = template_path
-# 	this.template_extension = template_extension
-# 	this.global_renders = kwargs
-#
-# def load_template(this, filename):
-# 	path = this.template_path + filename + this.template_extension
-# 	file = open(path, 'r')
-# 	text = ""
-# 	for line in file:
-# 		text+= line
-# 	file.close()
-# 	return text
-#
-# def simple_render(this, template, **kwargs):
-# 	template = template.format(**kwargs)
-# 	return  template
-#
-# def render(this, template, **kwargs):
-# 	keys = this.global_renders.copy() #Not the best way to do this, but backwards compatible from PEP448, in Python 3.5+ use keys = {**this.global_renters, **kwargs}
-# 	keys.update(kwargs)
-# 	template = this.simple_render(template, **keys)
-# 	return template
-#
-# def load_and_render(this, filename, header="header", tailer="tailer", **kwargs):
-# 	template = this.load_template(filename)
-# 	rendered_template = this.render(template, **kwargs)
-# 	rendered_template = this.load_template(header) + rendered_template
-# 	rendered_template = rendered_template + this.load_template(tailer)
-# 	return rendered_template
-# >>>>>>> ahmed_dev
-
 #-----------------------------------------------------------------------------
 
 # Allow image loading
@@ -98,23 +61,6 @@ def serve_js(js):
     # return static_file(js, root='js/')
 
 #-----------------------------------------------------------------------------
-
-# # Check the login credentials
-# def check_login(username, password):
-#     login = False
-#     if username != "admin": # Wrong Username
-#         err_str = "Incorrect Username"
-#         return err_str, login
-#
-#     if password != "password":
-#         err_str = "Incorrect Password"
-#         return err_str, login
-#
-#     login_string = "Logged in!"
-#     login = True
-#     return login_string, login
-# >>>>>>> ahmed_dev
-
 # check field is not empty:
 def no_empty_field(input):
     isEmpty = True
@@ -124,9 +70,6 @@ def no_empty_field(input):
     err_str = "All fields must be completed."
 
     return err_str, isEmpty
-
-# make sure fields aren't empty
-# def check_form(detail):
 
 #-----------------------------------------------------------------------------
 # GET REQUESTS
@@ -154,38 +97,35 @@ def edituser():
 
 @get('/admin')
 def admin():
-	return fEngine.load_and_render("admin")
-
-@get('/sql_test')
-def sql_test():
     security.is_logged_on()
-    return fEngine.load_and_render("sql_test", debug_text=model.get_users())
+    return fEngine.load_and_render("admin")
 
-@get('/about')
-def about():
-    security.is_logged_on()
-    return fEngine.load_and_render("about", garble=security.current_user())
+# @get('/sql_test')
+# def sql_test():
+#     security.is_logged_on()
+#     return fEngine.load_and_render("sql_test", debug_text=model.get_users())
 
-    # garble = ["leverage agile frameworks to provide a robust synopsis for high level overviews.",
-    # "provide user generated content in real-time will have multiple touchpoints for offshoring."]
-    # return fEngine.load_and_render("about", garble=np.random.choice(garble))
+# @get('/about')
+# def about():
+#     security.is_logged_on()
+#     return fEngine.load_and_render("about", garble=security.current_user())
 
 # display birth/death page
 @get('/medicalPrac')
 def birthAndDeath():
-    security.is_logged_on
+    security.is_logged_on()
     return fEngine.load_and_render("medicalPrac")
 
 # Display marriage page
 @get('/marriageOfficiator')
 def marriage():
-    security.is_logged_on
+    security.is_logged_on()
     return fEngine.load_and_render("marriageOfficiator")
 
 # Display funeral page
 @get('/funeralDir')
 def funeral():
-    security.is_logged_on
+    security.is_logged_on()
     return fEngine.load_and_render("funeralDir")
 #-----------------------------------------------------------------------------
 # POST REQUESTS
@@ -222,6 +162,7 @@ def do_login():
 # Update current user's info
 @post('/edituser')
 def do_edituser():
+    security.is_logged_on()
     newUsername = request.forms.get('username')
     password = request.forms.get('password')
     password2 = request.forms.get('password2')
@@ -296,188 +237,144 @@ def do_edituser():
 
 @post('/admin')
 def do_adminEdit():
+    security.is_logged_on()
 
-	username = request.forms.get('username')
-	currentUserName = model.get_username(security.current_user())[1]
-	userid = model.get_role(username)[0]
-	print(userid)
-	if model.get_role(currentUserName)[1] == 4:
-		usernameNew = request.forms.get('usernameNew')
-		passwordNew = request.forms.get('passwordNew')
-		roleNew = request.forms.get('role')
-		if usernameNew:
-			if model.username_exists(usernameNew):
-				return fEngine.load_and_render("invalid", reason="invalid name")
-			else:
-				model.sql('''UPDATE USER
-				SET username = ?
-				WHERE id = ?
-				''', usernameNew, userid
-				)
-				model.commit()
+    username = request.forms.get('username')
+    currentUserName = model.get_username(security.current_user())[1]
+    userid = model.get_role(username)[0]
+    if model.get_role(currentUserName)[1] == 4:
+        usernameNew = request.forms.get('usernameNew')
+        passwordNew = request.forms.get('passwordNew')
+        roleNew = request.forms.get('role')
+        if usernameNew:
+            if model.username_exists(usernameNew):
+                return fEngine.load_and_render("invalid", reason="invalid name")
+            else:
+                model.sql('''UPDATE USER
+                SET username = ?
+                WHERE id = ?
+                ''', usernameNew, userid
+                )
+                model.commit()
 
-		if passwordNew:
-				userName1 = ''
-				if usernameNew:
-					valid_pwd, reason = security.secure_password(passwordNew, usernameNew)
-					userName1 = usernameNew
-				else:
-					valid_pwd, reason = security.secure_password(passwordNew, username)
-					userName1 = username
+        if passwordNew:
+                userName1 = ''
+                if usernameNew:
+                    valid_pwd, reason = security.secure_password(passwordNew, usernameNew)
+                    userName1 = usernameNew
+                else:
+                    valid_pwd, reason = security.secure_password(passwordNew, username)
+                    userName1 = username
 
+                if valid_pwd:
+                    salt = model.get_salt(userName1)[1]
+                    hashPass= security.password_hash(passwordNew,salt)
+                    model.sql('''UPDATE USER
+                                SET password = ?
+                                WHERE id = ?
+                            ''', hashPass, userid
+                            )
+                    model.commit()
+                else:
+                    return fEngine.load_and_render("invalid", reason="invalid")
 
-				if valid_pwd:
-					salt = model.get_salt(userName1)[1]
-					hashPass= security.password_hash(passwordNew,salt)
-					model.sql('''UPDATE USER
-								SET password = ?
-								WHERE id = ?
-							''', hashPass, userid
-							)
-					model.commit()
-				else:
-					return fEngine.load_and_render("invalid", reason="invalid")
+        if roleNew:
+                model.sql('''UPDATE USER
+                SET role = ?
+                WHERE id = ?
+                ''', roleNew, userid
+                )
+                model.commit()
+        return fEngine.load_and_render("valid", reason="changes committed!")
 
-
-
-
-		if roleNew:
-				model.sql('''UPDATE USER
-				SET role = ?
-				WHERE id = ?
-				''', roleNew, userid
-				)
-				model.commit()
-		return fEngine.load_and_render("valid", reason="changes committed!")
-
-	else:
-		return fEngine.load_and_render("invalid", reason="you are not the admin")
+    else:
+        return fEngine.load_and_render("invalid", reason="you are not the admin")
 
 
-#-----------------------------------------------------------------------------
-# #role = request.forms.get('role')
-# # Check current password is same
-#
-# if username:
-# 	#check if username already exists
-# 	model.sql('''UPDATE USER
-# 	SET username = ?
-# 	WHERE id = ?
-# 	''', username, security.current_user()
-# 	)
-# 	model.commit()
-# #if password and password == password2:
-# 		# Update old password to new password
-#
-# # if password == password2:
-# # 	hashPass = security.password_hash(password, model.get_salt(username)[1])
-# # 	model.sql('''UPDATE USER
-# #     SET password = ?
-# #     WHERE id = ?
-# #     ''', (hashPass, security.currentuser())
-# #     )
-# #     model.commit()
-#
-# # Updates role regardless of whether it's been changed
-# model.sql('''UPDATE USER
-# SET type = ?
-# WHERE id = ?
-# ''', role, security.current_user()
-# )
-# model.commit()
-#
-# return fEngine.load_and_render("valid", flag="changes committed!")
-#-----------------------------------------------------------------------------
-# username = request.forms.get('username')
-# password = request.forms.get('password')
-# err_str, login = check_login(username, password)
-# if login:
-# 	return fEngine.load_and_render("valid", flag=err_str)
-# else:
-# 	return fEngine.load_and_render("invalid", reason=err_str)
-#
 # attempt storing wedding details
-
-@post('/marriageOfficiator')
+@post('/wedding')
 def wedding_details():
-	weddingTime = request.forms.get('marriageTime')
-	weddingPlace = request.forms.get('weddingPlace')
-	weddingGroom = request.forms.get('weddingGroom')
-	weddingBride = request.forms.get('weddingBride')
-# 	details = [weddingTime, weddingPlace, weddingGroom, weddingBride]
-# for detail in details:
-# 	no_empty_field(detail)
-#
-#
-#
-# # attempt storing divorce details
-# @post('/marriageOfficiator')
-# def divorce_details():
-# divorceTime = request.forms.get('divorceTime')
-# divorcePlace = request.forms.get('divorcePlace')
-# divorceHusband = request.forms.get('divorceHusband')
-# divorceWife = request.forms.get('divorceWife')
-#
-# # attempt storing birth details
-# @post('/medicalPrac')
-# def birth_details():
-# birthTime = request.forms.get('birthTime')
-# birthPlace = request.forms.get('birthPlace')
-# birthFather = request.forms.get('birthFather')
-# birthMother = request.forms.get('birthMother')
-#
-# # attempt storing death details
-# @post('/medicalPrac')
-# def death_details():
-# deathTime = request.forms.get('deathTime')
-# deathCause = request.forms.get('deathCause')
-# deathAutopsy = request.forms.get('deathAustopsy')
-#
-# # attempt storing funeral details
-# @post('/funeralDir')
-# def funeral_details():
-# familyMembers = request.forms.get('familyMembers')
-# nextOfKin = request.forms.get('nextOfKin')
-# 	err_str, isEmpty = no_empty_field(detail)
-# 	if isEmpty == True:
-# 		popup(err_str)
+    security.is_logged_on()
+    time = request.forms.get('weddingTime')
+    place = request.forms.get('weddingPlace')
+    groom = request.forms.get('weddingGroom')
+    bride = request.forms.get('weddingBride')
 
+    formPass = security.handle_wedding_form(time, place, groom, bride)
+    if formPass == True:
+        return fEngine.load_and_render("valid",reason="Application successfully filed in for review!")
+    else:
+        return fEngine.load_and_render("invalid",reason="Invalid application.")
 
 
 # attempt storing divorce details
-@post('/marriageOfficiator')
+@post('/divorce')
 def divorce_details():
-	divorceTime = request.forms.get('divorceTime')
-	divorcePlace = request.forms.get('divorcePlace')
-	divorceHusband = request.forms.get('divorceHusband')
-	divorceWife = request.forms.get('divorceWife')
+    security.is_logged_on()
+    time = request.forms.get('divorceTime')
+    place = request.forms.get('divorcePlace')
+    husband = request.forms.get('divorceHusband')
+    wife = request.forms.get('divorceWife')
+
+    formPass = security.handle_divorce_form(time, place, husband, wife)
+    if formPass == True:
+        return fEngine.load_and_render("valid",reason="Application successfully filed in for review!")
+    else:
+        return fEngine.load_and_render("invalid",reason="Invalid application.")
+
 
 # attempt storing birth details
-@post('/medicalPrac')
+@post('/birth')
 def birth_details():
-	birthName = request.forms.get('birthName')
-	healthcareID = request.forms.get('healthcareID')
-	birthTime = request.forms.get('birthTime')
-	birthPlace = request.forms.get('birthPlace')
-	birthFather = request.forms.get('birthFather')
-	birthMother = request.forms.get('birthMother')
+    security.is_logged_on()
+    name = request.forms.get('birthName')
+    healthcare_id = request.forms.get('healthcareID')
+    time = request.forms.get('birthTime')
+    place = request.forms.get('birthPlace')
+    father = request.forms.get('birthFather')
+    mother = request.forms.get('birthMother')
+
+    formPass = security.handle_birth_form(name, healthcare_id, time, place, father, mother)
+    if formPass == True:
+        return fEngine.load_and_render("valid",reason="Application successfully filed in for review!")
+    else:
+        return fEngine.load_and_render("invalid",reason="Invalid application.")
 
 # attempt storing death details
-@post('/medicalPrac')
+@post('/death')
 def death_details():
-	deathName = request.forms.get('deathName')
-	healthcareID = request.forms.get('healthcareID')
-	deathTime = request.forms.get('deathTime')
-	deathCause = request.forms.get('deathCause')
-	deathAutopsy = request.forms.get('deathAustopsy')
+    security.is_logged_on()
+    name = request.forms.get('deathName')
+    healthcare_id = request.forms.get('healthcareID')
+    time = request.forms.get('deathTime')
+    cause = request.forms.get('deathCause')
+    autopsy = request.forms.get('deathAustopsy')
+    if autopsy == "Yes":
+        pass
+    else:
+        autopsy = "No"
+
+    formPass = security.handle_death_form(name, healthcare_id, d_time, cause, autopsy)
+    if formPass == True:
+        return fEngine.load_and_render("valid",reason="Application successfully filed in for review!")
+    else:
+        return fEngine.load_and_render("invalid",reason="Invalid application.")
+# HANDLE AUTOPSY CHECKBOX!!!!!!
 
 # attempt storing funeral details
-@post('/funeralDir')
+@post('/funeral')
 def funeral_details():
-	funeralName = request.forms.get('funeralName')
-	healthcareID = request.forms.get('healthcareID')
-	familyMembers = request.forms.get('familyMembers')
-	nextOfKin = request.forms.get('nextOfKin')
+    security.is_logged_on()
+    name = request.forms.get('funeralName')
+    healthcare_id = request.forms.get('healthcareID')
+    family_members = request.forms.get('familyMembers')
+    next_of_kin = request.forms.get('nextOfKin')
+
+    formPass = security.handle_funeral_form(name, healthcare_id, family_members, next_of_kin)
+    if formPass == True:
+        return fEngine.load_and_render("valid",reason="Application successfully filed in for review!")
+    else:
+        return fEngine.load_and_render("invalid",reason="Invalid application.")
 
 #-----------------------------------------------------------------------------
 
