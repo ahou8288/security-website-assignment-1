@@ -33,16 +33,6 @@ def reset_table():
 	cur.execute(sql4)
 	cur.execute(sql5)
 
-#	sql('''DROP TABLE USER
-#			DROP TABLE LOGIN_REQUESTS
-#			DROP TABLE WEDDING_FORMS
-#			DROP TABLE DEATH_FORMS
-#			DROP TABLE BIRTH_FORMS
-#			DROP TABLE FUNERAL_FORMS
-#		''')
-#	commit()
-
-
 def get_role_nums():
 	return {
 	"marriage":0,

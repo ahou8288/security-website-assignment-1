@@ -251,6 +251,8 @@ def do_adminEdit():
 	if reset:
 		if reset == 'Y':
 			model.reset_table()
+			return fEngine.load_and_render("valid", reason="changes committed!")
+
 	if username:
 		userid = model.get_role(username)[0]
 		if model.get_role(currentUserName)[1] == 4:
