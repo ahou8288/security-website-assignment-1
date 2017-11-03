@@ -1,0 +1,27 @@
+# edit, marraige, funeral, medical did not check login
+births button doesn't do anything when logged in as marraige (no error or response)
+Marraige button doesn't do anything for a medical pracicioner
+Can't view anything like marriage, divorce, funeral.
+Can't delete anything
+# merge commit issues commented out instead of deleted (come on guys)
+edit user page has an error when you submit it.
+# Non logged in user can apply for divorce
+# Non logged in user can have funeral
+# Non logged in user trying to POST to edit_user causes an error
+# When you delete the current password input box in edit_user and then submit the form it causes an error
+you can submit invalid IDs (-1) into the funeral form
+# edit_user does not check if a username is already taken #not actually an error
+in the table creation function new_id is set loads of times but not used
+# allsessions is printed out
+no validataion for wedding_form or divorce_form (or most of the other form) values at all
+healthcare_id is not checked against any foreign keys i think
+no foreign key relationships in tables
+Lack of feedback for some form inputs means we will get 1 for presentation
+# staff and admin registration no longer visible from register page? but user can still use form to register as admin
+No functions for staff that I can see
+Admin cannot edit user details
+Admin cannot clear database from website
+admin cannot load the sql_log into the website, has to look at file.
+admin changes validataion does not work.
+# I think anyone can access admin
+as far as I can tell it doesn't check what the role of user is when doing stuff.
