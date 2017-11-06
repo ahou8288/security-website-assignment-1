@@ -1,29 +1,7 @@
-# README #
+# IT security website #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This website was written for the IT security course.
 
-### What is this repository for? ###
+For this website I focused on writing the sql backend and the security.py file which handles most of the session management.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Modules like django or other heavier web frameworks were avoided (not allowed for the assignment), and things like session management were implemented from scratch so that we could learn these concepts.
